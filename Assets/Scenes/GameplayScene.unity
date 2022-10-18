@@ -136,7 +136,7 @@ GameObject:
   - component: {fileID: 311197114}
   - component: {fileID: 311197115}
   - component: {fileID: 311197116}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: playerOne
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -259,10 +259,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4e791c82e3f3e742815aa75e438fb96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  platformslayerMask:
+    serializedVersion: 2
+    m_Bits: 8
   rb1: {fileID: 0}
-  jumpForceNormal: 10
-  jumpForceBuff: 6
   p1: {fileID: 311197111}
+  jumpForceNormal: 10
+  jumpForceBuff: 12
   buffOnOrOff1: 0
 --- !u!1 &800988808
 GameObject:
