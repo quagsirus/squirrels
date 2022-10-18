@@ -4,23 +4,23 @@ using UnityEngine;
 
 public class PlayerTwoMove : MonoBehaviour
 {
-    public Rigidbody2D rb;
+    public Rigidbody2D rb2;
     public float jumpForce = 10;
     public GameObject p2;
 
     // Start is called before the first frame update
     void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
+        rb2 = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.UpArrow))
+        if (Input.GetKeyDown(KeyCode.I))
         {
 
-            rb.velocity = Vector2.up * jumpForce;
+            rb2.velocity = Vector2.up * jumpForce;
             
         }
     }
