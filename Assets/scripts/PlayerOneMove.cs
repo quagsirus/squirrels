@@ -10,8 +10,17 @@ public class PlayerOneMove : MonoBehaviour
     public GameObject p1;
     public float jumpForceNormal = 10;
     public float jumpForceBuff = 12;
+    public float speed;
     public bool buffOnOrOff1 = false;
+    private float moveInput;
+    private bool facingRight = true;
+    private bool isGrounded;
+    public Transform groundCheck;
+    public float checkRadius;
+    public LayerMask whatIsGround;
+    public int jump;
     SpriteRenderer sprite;
+
 
     // Start is called before the first frame update
     void Start()
@@ -32,12 +41,28 @@ public class PlayerOneMove : MonoBehaviour
         }
 
         //code for jumping, if the player is buff then the jump force is less
-        if (Input.GetKeyDown(KeyCode.W))
+        if (Input.GetKeyDown(KeyCode.W) && isGrounded)
         {
             // if the player is not buff then the jump force will be normal
             if (buffOnOrOff1 == false) { rb1.velocity = Vector2.up * jumpForceNormal; }
             else { rb1.velocity = Vector2.up * jumpForceBuff; }
+            
         }
+        
+    }
+    private void FixedUpdate()
+    {
+        isGrounded = Physics2D.OverlapCircle(groundCheck.position, checkRadius, whatIsGround);
+        moveInput = Input.GetAxis("Horizontal");
+        rb1.velocity = new Vector2(moveInput * speed, rb1.velocity.y);
+        if (facingRight == false && moveInput > 0)
+        {
+            Flip();
+        }
+        else if (facingRight == true && moveInput < 0){
+            Flip();
+        }
+        
     }
     void turningBuff1()
     {
@@ -53,5 +78,12 @@ public class PlayerOneMove : MonoBehaviour
         buffOnOrOff1 = false;
         rb1.gravityScale = 1.0f;
         sprite.color = new Color(1, 1, 1, 1);
+    }
+    void Flip()
+    {
+        facingRight =! facingRight;
+        Vector3 Scaler = transform.localScale;
+        Scaler.x *= -1;
+        transform.localScale = Scaler;
     }
 }
