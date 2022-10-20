@@ -10,7 +10,7 @@ public class PlayerOneMove : MonoBehaviour
     public GameObject p1;
     public float jumpForceNormal = 10;
     public float jumpForceBuff = 12;
-    public float speed;
+    private float speed = 6;
     public bool buffOnOrOff1 = false;
     private float moveInput;
     private bool facingRight = true;
@@ -18,7 +18,6 @@ public class PlayerOneMove : MonoBehaviour
     public Transform groundCheck;
     public float checkRadius;
     public LayerMask whatIsGround;
-    public int jump;
     SpriteRenderer sprite;
 
 
@@ -52,9 +51,12 @@ public class PlayerOneMove : MonoBehaviour
     }
     private void FixedUpdate()
     {
+        //controls weather the player is grounded or not
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, checkRadius, whatIsGround);
         moveInput = Input.GetAxis("Horizontal");
         rb1.velocity = new Vector2(moveInput * speed, rb1.velocity.y);
+        
+        //flips player when moving as moveinput will be 1 or -1
         if (facingRight == false && moveInput > 0)
         {
             Flip();
@@ -81,6 +83,7 @@ public class PlayerOneMove : MonoBehaviour
     }
     void Flip()
     {
+        //code for fliping the sprite when moving left or right
         facingRight =! facingRight;
         Vector3 Scaler = transform.localScale;
         Scaler.x *= -1;
