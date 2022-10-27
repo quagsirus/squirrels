@@ -17,6 +17,7 @@ public class PlayerOneMove : MonoBehaviour
     private bool isGrounded;
     public Transform groundCheck;
     public float checkRadius;
+
     public LayerMask whatIsGround;
     SpriteRenderer sprite;
 
@@ -53,7 +54,7 @@ public class PlayerOneMove : MonoBehaviour
     {
         //controls weather the player is grounded or not
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, checkRadius, whatIsGround);
-        moveInput = Input.GetAxis("Horizontal");
+        moveInput = Input.GetAxisRaw("Horizontal");
         rb1.velocity = new Vector2(moveInput * speed, rb1.velocity.y);
         
         //flips player when moving as moveinput will be 1 or -1
