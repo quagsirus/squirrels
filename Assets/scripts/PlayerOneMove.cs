@@ -8,6 +8,8 @@ public class PlayerOneMove : MonoBehaviour
 
     public Rigidbody2D rb1;
     public GameObject p1;
+    public GameObject acornR1;
+    public GameObject acornL1;
     public float jumpForceNormal = 10;
     public float jumpForceBuff = 12;
     private float speed = 6;
@@ -32,16 +34,21 @@ public class PlayerOneMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (Input.GetKeyDown(KeyCode.F))
         {
             //if buffOnOrOff1 is true (meaning the player is buff)
             //then player will change back to normal, else player turns buff
-            if (buffOnOrOff1) { turningNormal1();}
+            if (buffOnOrOff1) { turningNormal1(); }
             else { turningBuff1(); }
         }
+        if (Input.GetKeyDown(KeyCode.G))
+        {
+            if (buffOnOrOff1 == true) { hitting(); }
+            else { throwing(); }
+        }
 
-        //code for jumping, if the player is buff then the jump force is less
-        if (Input.GetKeyDown(KeyCode.W) && isGrounded)
+            //code for jumping, if the player is buff then the jump force is less
+            if (Input.GetKeyDown(KeyCode.W) && isGrounded)
         {
             // if the player is not buff then the jump force will be normal
             if (buffOnOrOff1 == false) { rb1.velocity = Vector2.up * jumpForceNormal; }
@@ -89,5 +96,14 @@ public class PlayerOneMove : MonoBehaviour
         Vector3 Scaler = transform.localScale;
         Scaler.x *= -1;
         transform.localScale = Scaler;
+    }
+    void hitting()
+    {
+        Debug.LogError("hitting");
+    }
+    void throwing()
+    {
+        if (facingRight) { Instantiate(acornR1, transform.position, Quaternion.identity); }
+        if (!facingRight) { Instantiate(acornL1, transform.position, Quaternion.identity); }
     }
 }
