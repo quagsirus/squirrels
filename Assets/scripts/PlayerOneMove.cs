@@ -63,6 +63,15 @@ public class PlayerOneMove : MonoBehaviour
             }
             
         }
+
+        // animation handling for jump
+        if (isGrounded)
+        {
+            animator.SetBool("isJumping", false);
+        } else
+        {
+            animator.SetBool("isJumping", true);
+        }
         
     }
     private void FixedUpdate()
