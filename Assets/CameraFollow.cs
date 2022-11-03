@@ -11,17 +11,26 @@ public class CameraFollow : MonoBehaviour
     public Transform Player;
     public float speed;
     public Vector3 offset;
+    public Vector3 minPoint, maxPoint;
 
     private void Awake()
     {
-        speed = 0.125f;
+        speed = 10f;
     }
-    private void LateUpdate()
+    private void FixedUpdate()
     {
-        //Vector3 targetPosition = Player.position + offset;
+        Vector3 targetPosition = Player.position + offset;
         //Vector3 smoothTransition = Vector3.Lerp(transform.position, targetPosition, speed);
         //transform.position = smoothTransition;
         //transform.position = Player.position + offset;
-        transform.position = Player.position;
+        //transform.position = Player.position;
+
+        Vector3 boundPosition = new Vector3(
+            Mathf.Clamp(targetPosition.x, minPoint.x, maxPoint.x),
+            Mathf.Clamp(targetPosition.y, minPoint.y, maxPoint.y),
+            Mathf.Clamp(targetPosition.z, minPoint.z, maxPoint.z));
+
+        Vector3 smoothedPosition = Vector3.Lerp(transform.position, boundPosition, speed * Time.deltaTime);
+        transform.position = smoothedPosition;
     }
 }
