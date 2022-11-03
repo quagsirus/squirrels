@@ -614,6 +614,7 @@ MonoBehaviour:
   whatIsGround:
     serializedVersion: 2
     m_Bits: 8
+  animator: {fileID: 311197118}
 --- !u!61 &311197117
 BoxCollider2D:
   m_ObjectHideFlags: 0
