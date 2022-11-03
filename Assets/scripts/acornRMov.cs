@@ -13,6 +13,7 @@ public class acornRMov : MonoBehaviour
     {
         rbacR = GetComponent<Rigidbody2D>();
         rbacR.velocity = new Vector2(rbacR.velocity.x, uplR);
+        StartCoroutine(SelfDestruct());
     }
 
     // Update is called once per frame
@@ -23,5 +24,11 @@ public class acornRMov : MonoBehaviour
     public void FixedUpdate()
     {
         rbacR.velocity = new Vector2(speedR, rbacR.velocity.y);
+    }
+    
+    IEnumerator SelfDestruct()
+    {
+        yield return new WaitForSeconds(2f);
+        Destroy(gameObject);
     }
 }

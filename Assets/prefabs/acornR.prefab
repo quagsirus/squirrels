@@ -101,7 +101,7 @@ MonoBehaviour:
   acornR: {fileID: 6653980313916308350}
   rbacR: {fileID: 0}
   speedR: 20
-  uplR: 5
+  uplR: 2
 --- !u!50 &-1190453689153812669
 Rigidbody2D:
   serializedVersion: 4
