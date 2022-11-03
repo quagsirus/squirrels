@@ -23,6 +23,7 @@ public class PlayerOneMove : MonoBehaviour
     public LayerMask whatIsGround;
     SpriteRenderer sprite;
 
+    public Animator animator;
 
     // Start is called before the first frame update
     void Start()
@@ -48,11 +49,18 @@ public class PlayerOneMove : MonoBehaviour
         }
 
             //code for jumping, if the player is buff then the jump force is less
-            if (Input.GetKeyDown(KeyCode.W) && isGrounded)
+        if (Input.GetKeyDown(KeyCode.W) && isGrounded)
         {
             // if the player is not buff then the jump force will be normal
-            if (buffOnOrOff1 == false) { rb1.velocity = Vector2.up * jumpForceNormal; }
-            else { rb1.velocity = Vector2.up * jumpForceBuff; }
+            if (buffOnOrOff1 == false) 
+            { 
+                rb1.velocity = Vector2.up * jumpForceNormal;
+                animator.SetBool("isJumping", true);
+            }
+            else 
+            { 
+                rb1.velocity = Vector2.up * jumpForceBuff; 
+            }
             
         }
         
