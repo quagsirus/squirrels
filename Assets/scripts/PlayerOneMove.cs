@@ -44,8 +44,14 @@ public class PlayerOneMove : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.G))
         {
-            if (buffOnOrOff1 == true) { hitting(); }
-            else { throwing(); }
+            if (buffOnOrOff1 == true) 
+            { 
+                hitting(); 
+            }
+            else 
+            { 
+                throwing();
+            }
         }
 
             //code for jumping, if the player is buff then the jump force is less
@@ -90,6 +96,20 @@ public class PlayerOneMove : MonoBehaviour
             Flip();
         }
         
+        //will play run animation when running left or right
+        // if there is a more efficient way to do this then go ahead - emma :)
+        if (moveInput > 0)
+        {
+            animator.SetBool("isRunning", true);
+        }
+        else if (moveInput < 0)
+        {
+            animator.SetBool("isRunning", true);
+        }
+        else
+        {
+            animator.SetBool("isRunning", false);
+        }
     }
     void turningBuff1()
     {
@@ -122,5 +142,6 @@ public class PlayerOneMove : MonoBehaviour
     {
         if (facingRight) { Instantiate(acornR1, transform.position, Quaternion.identity); }
         if (!facingRight) { Instantiate(acornL1, transform.position, Quaternion.identity); }
+
     }
 }
