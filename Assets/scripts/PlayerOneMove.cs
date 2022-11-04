@@ -12,16 +12,16 @@ public class PlayerOneMove : MonoBehaviour
     public GameObject acornL1;
     public float jumpForceNormal = 10;
     public float jumpForceBuff = 12;
-    private float speed = 6;
+    private float speed1 = 6;
     public bool buffOnOrOff1 = false;
-    private float moveInput;
-    private bool facingRight = true;
-    private bool isGrounded;
-    public Transform groundCheck;
-    public float checkRadius;
+    private float moveInput1;
+    private bool facingRight1 = true;
+    private bool isGrounded1;
+    public Transform groundCheck1;
+    public float checkRadius1;
 
-    public LayerMask whatIsGround;
-    SpriteRenderer sprite;
+    public LayerMask whatIsGround1;
+    SpriteRenderer sprite1;
 
     public Animator animator;
 
@@ -29,7 +29,7 @@ public class PlayerOneMove : MonoBehaviour
     void Start()
     {
         rb1 = GetComponent<Rigidbody2D>();
-        sprite = GetComponent<SpriteRenderer>();
+        sprite1 = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -55,7 +55,7 @@ public class PlayerOneMove : MonoBehaviour
         }
 
             //code for jumping, if the player is buff then the jump force is less
-        if (Input.GetKeyDown(KeyCode.W) && isGrounded)
+        if (Input.GetKeyDown(KeyCode.W) && isGrounded1)
         {
             // if the player is not buff then the jump force will be normal
             if (buffOnOrOff1 == false) 
@@ -71,7 +71,7 @@ public class PlayerOneMove : MonoBehaviour
         }
 
         // animation handling for jump
-        if (isGrounded)
+        if (isGrounded1)
         {
             animator.SetBool("isJumping", false);
         } else
@@ -83,26 +83,21 @@ public class PlayerOneMove : MonoBehaviour
     private void FixedUpdate()
     {
         //controls weather the player is grounded or not
-        isGrounded = Physics2D.OverlapCircle(groundCheck.position, checkRadius, whatIsGround);
-        moveInput = Input.GetAxisRaw("Horizontal");
-        rb1.velocity = new Vector2(moveInput * speed, rb1.velocity.y);
+        isGrounded1 = Physics2D.OverlapCircle(groundCheck1.position, checkRadius1, whatIsGround1);
+        moveInput1 = Input.GetAxisRaw("Horizontal");
+        rb1.velocity = new Vector2(moveInput1 * speed1, rb1.velocity.y);
         
         //flips player when moving as moveinput will be 1 or -1
-        if (facingRight == false && moveInput > 0)
-        {
-            Flip();
-        }
-        else if (facingRight == true && moveInput < 0){
-            Flip();
-        }
+        if (facingRight1 == false && moveInput1 > 0) { Flip(); }
+        else if (facingRight1 == true && moveInput1 < 0) { Flip(); }
         
         //will play run animation when running left or right
         // if there is a more efficient way to do this then go ahead - emma :)
-        if (moveInput > 0)
+        if (moveInput1 > 0)
         {
             animator.SetBool("isRunning", true);
         }
-        else if (moveInput < 0)
+        else if (moveInput1 < 0)
         {
             animator.SetBool("isRunning", true);
         }
@@ -116,7 +111,7 @@ public class PlayerOneMove : MonoBehaviour
         //all code for the squence of turning buff
         buffOnOrOff1 = true;
         rb1.gravityScale = 3.0f;
-        sprite.color = new Color(1, 0, 0, 1);
+        sprite1.color = new Color(1, 0, 0, 1);
 
     }
     void turningNormal1()
@@ -124,24 +119,24 @@ public class PlayerOneMove : MonoBehaviour
         //all code for the sequence of turing normal
         buffOnOrOff1 = false;
         rb1.gravityScale = 1.0f;
-        sprite.color = new Color(1, 1, 1, 1);
+        sprite1.color = new Color(1, 1, 1, 1);
     }
     void Flip()
     {
         //code for fliping the sprite when moving left or right
-        facingRight =! facingRight;
+        facingRight1 =! facingRight1;
         Vector3 Scaler = transform.localScale;
         Scaler.x *= -1;
         transform.localScale = Scaler;
     }
     void hitting()
     {
-        Debug.LogError("hitting");
+        // this has been moved to p1Punch script
     }
+    //spawns the acorns which have there own logic
     void throwing()
     {
-        if (facingRight) { Instantiate(acornR1, transform.position, Quaternion.identity); }
-        if (!facingRight) { Instantiate(acornL1, transform.position, Quaternion.identity); }
-
+        if (facingRight1) { Instantiate(acornR1, transform.position, Quaternion.identity); }
+        if (!facingRight1) { Instantiate(acornL1, transform.position, Quaternion.identity); }
     }
 }
