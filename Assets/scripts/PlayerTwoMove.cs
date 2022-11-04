@@ -85,7 +85,7 @@ public class PlayerTwoMove : MonoBehaviour
     {
         //controls weather the player is grounded or not
         isGrounded2 = Physics2D.OverlapCircle(groundCheck2.position, checkRadius2, whatIsGround2);
-        moveInput2 = Input.GetAxisRaw("Horizontal");
+        moveInput2 = Input.GetAxisRaw("Horizontaltwo");
         rb2.velocity = new Vector2(moveInput2 * speed2, rb2.velocity.y);
 
         //flips player when moving as moveinput will be 1 or -1
