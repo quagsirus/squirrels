@@ -608,7 +608,7 @@ MonoBehaviour:
   acornR1: {fileID: 6653980313916308350, guid: 68ea1be6781caae46ae953535c1499f9, type: 3}
   acornL1: {fileID: 6653980313916308350, guid: 56f8f7357fb0d6748bef023c6f3a2dcb, type: 3}
   jumpForceNormal: 10
-  jumpForceBuff: 12
+  jumpForceBuff1: 12
   buffOnOrOff1: 0
   groundCheck1: {fileID: 1596158359}
   checkRadius1: 0
@@ -650,7 +650,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 311197111}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 2506d34d6375e75409a2c7f098cdbdf6, type: 2}
   m_CullingMode: 0
@@ -1415,9 +1415,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43b7690a800ea944d9888e5dde94984b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  platformslayerMask:
+    serializedVersion: 2
+    m_Bits: 8
   rb2: {fileID: 0}
-  jumpForce: 10
   p2: {fileID: 891442928}
+  acornR2: {fileID: 6653980313916308350, guid: 68ea1be6781caae46ae953535c1499f9, type: 3}
+  acornL2: {fileID: 6653980313916308350, guid: 56f8f7357fb0d6748bef023c6f3a2dcb, type: 3}
+  jumpForceNormal2: 10
+  jumpForceBuff2: 12
+  buffOnOrOff2: 0
+  groundCheck2: {fileID: 1108256160}
+  checkRadius2: 0
+  whatIsGround2:
+    serializedVersion: 2
+    m_Bits: 8
 --- !u!50 &891442930
 Rigidbody2D:
   serializedVersion: 4
@@ -1499,10 +1511,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 891442928}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2, y: 0.1699999, z: 0}
+  m_LocalPosition: {x: -1.17, y: 0.1699999, z: 0}
   m_LocalScale: {x: 3, y: 3, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1108256160}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1677,6 +1690,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 311197113}
   m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1108256159
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1108256160}
+  m_Layer: 0
+  m_Name: Ground Check (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1108256160
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1108256159}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.121, y: -0.649, z: 198.82843}
+  m_LocalScale: {x: 0.13610834, y: 0.10315499, z: 0.30946496}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 891442933}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1121169684
 GameObject:

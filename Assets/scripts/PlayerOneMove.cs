@@ -11,7 +11,7 @@ public class PlayerOneMove : MonoBehaviour
     public GameObject acornR1;
     public GameObject acornL1;
     public float jumpForceNormal = 10;
-    public float jumpForceBuff = 12;
+    public float jumpForceBuff1 = 12;
     private float speed1 = 6;
     public bool buffOnOrOff1 = false;
     private float moveInput1;
@@ -65,7 +65,7 @@ public class PlayerOneMove : MonoBehaviour
             }
             else 
             { 
-                rb1.velocity = Vector2.up * jumpForceBuff; 
+                rb1.velocity = Vector2.up * jumpForceBuff1; 
             }
             
         }
