@@ -119,7 +119,7 @@ public class PlayerTwoMove : MonoBehaviour
     {
         //all code for the sequence of turing normal
         buffOnOrOff2 = false;
-        rb2.gravityScale = 1.0f;
+        rb2.gravityScale = 2.0f;
         sprite2.color = new Color(1, 1, 1, 1);
     }
     void Flip()

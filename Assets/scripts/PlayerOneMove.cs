@@ -118,7 +118,7 @@ public class PlayerOneMove : MonoBehaviour
     {
         //all code for the sequence of turing normal
         buffOnOrOff1 = false;
-        rb1.gravityScale = 1.0f;
+        rb1.gravityScale = 2f;
         sprite1.color = new Color(1, 1, 1, 1);
     }
     void Flip()
