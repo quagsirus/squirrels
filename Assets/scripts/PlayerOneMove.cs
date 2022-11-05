@@ -93,17 +93,13 @@ public class PlayerOneMove : MonoBehaviour
         
         //will play run animation when running left or right
         // if there is a more efficient way to do this then go ahead - emma :)
-        if (moveInput1 > 0)
+        if (moveInput1 == 0)
         {
-            animator.SetBool("isRunning", true);
-        }
-        else if (moveInput1 < 0)
-        {
-            animator.SetBool("isRunning", true);
+            animator.SetBool("isRunning", false);
         }
         else
         {
-            animator.SetBool("isRunning", false);
+            animator.SetBool("isRunning", true);
         }
     }
     void turningBuff1()
