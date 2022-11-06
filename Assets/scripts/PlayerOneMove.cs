@@ -8,8 +8,7 @@ public class PlayerOneMove : MonoBehaviour
 
     public Rigidbody2D rb1;
     public GameObject p1;
-    public GameObject acornR1;
-    public GameObject acornL1;
+    public GameObject acorn;
     public float jumpForceNormal = 10;
     public float jumpForceBuff1 = 12;
     private float speed1 = 6;
@@ -88,8 +87,8 @@ public class PlayerOneMove : MonoBehaviour
         rb1.velocity = new Vector2(moveInput1 * speed1, rb1.velocity.y);
         
         //flips player when moving as moveinput will be 1 or -1
-        if (facingRight1 == false && moveInput1 > 0) { Flip(); }
-        else if (facingRight1 == true && moveInput1 < 0) { Flip(); }
+        if (!facingRight1 && moveInput1 > 0) { Flip(); }
+        else if (facingRight1 && moveInput1 < 0) { Flip(); }
         
         //will play run animation when running left or right
         // if there is a more efficient way to do this then go ahead - emma :)
@@ -121,9 +120,7 @@ public class PlayerOneMove : MonoBehaviour
     {
         //code for fliping the sprite when moving left or right
         facingRight1 =! facingRight1;
-        Vector3 Scaler = transform.localScale;
-        Scaler.x *= -1;
-        transform.localScale = Scaler;
+        transform.rotation = Quaternion.AngleAxis(180 - transform.eulerAngles.y, Vector3.up);
     }
     void hitting()
     {
@@ -132,7 +129,7 @@ public class PlayerOneMove : MonoBehaviour
     //spawns the acorns which have there own logic
     void throwing()
     {
-        if (facingRight1) { Instantiate(acornR1, transform.position, Quaternion.identity); }
-        if (!facingRight1) { Instantiate(acornL1, transform.position, Quaternion.identity); }
+        GameObject newAcorn = Instantiate(acorn, transform.position, Quaternion.identity);
+        newAcorn.GetComponent<acornMov>().speed = 20;
     }
 }

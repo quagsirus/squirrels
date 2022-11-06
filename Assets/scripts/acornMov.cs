@@ -2,17 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class acornLMov : MonoBehaviour
+public class acornMov : MonoBehaviour
 {
-    public GameObject acornL;
-    public Rigidbody2D rbacL;
-    public float speedL = -20;
-    public float uplL = 2;
+    public GameObject acorn;
+    public Rigidbody2D rbac;
+    public float speed = -20;
+    public float upl = 2;
     // Start is called before the first frame update
     void Start()
     {
-        rbacL = GetComponent<Rigidbody2D>();
-        rbacL.velocity = new Vector2(rbacL.velocity.x, uplL);
+        rbac = GetComponent<Rigidbody2D>();
+        rbac.velocity = new Vector2(rbac.velocity.x, upl);
         StartCoroutine(SelfDestruct());
     }
 
@@ -23,7 +23,7 @@ public class acornLMov : MonoBehaviour
     }
     public void FixedUpdate()
     {
-        rbacL.velocity = new Vector2(speedL, rbacL.velocity.y);
+        rbac.velocity = new Vector2(speed, rbac.velocity.y);
     }
 
     IEnumerator SelfDestruct()

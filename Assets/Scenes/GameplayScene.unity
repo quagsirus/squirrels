@@ -605,8 +605,7 @@ MonoBehaviour:
     m_Bits: 8
   rb1: {fileID: 0}
   p1: {fileID: 311197111}
-  acornR1: {fileID: 6653980313916308350, guid: 68ea1be6781caae46ae953535c1499f9, type: 3}
-  acornL1: {fileID: 6653980313916308350, guid: 56f8f7357fb0d6748bef023c6f3a2dcb, type: 3}
+  acorn: {fileID: 6653980313916308350, guid: 56f8f7357fb0d6748bef023c6f3a2dcb, type: 3}
   jumpForceNormal: 10
   jumpForceBuff1: 12
   buffOnOrOff1: 0
@@ -650,7 +649,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 311197111}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 2506d34d6375e75409a2c7f098cdbdf6, type: 2}
   m_CullingMode: 0
@@ -2183,7 +2182,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1596158358}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.06, y: -0.117, z: 48.69367}
+  m_LocalPosition: {x: 0, y: -0.117, z: 0}
   m_LocalScale: {x: 0.1, y: 0.075788885, z: 0.075788885}
   m_ConstrainProportionsScale: 0
   m_Children: []
