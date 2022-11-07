@@ -98,10 +98,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f70b23195df17a74aac447aff490bb87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  acornL: {fileID: 6653980313916308350}
-  rbacL: {fileID: 0}
-  speedL: -20
-  uplL: 4
+  acorn: {fileID: 0}
+  rbac: {fileID: 0}
+  speed: -25
+  upl: 7
 --- !u!50 &6942653227672017791
 Rigidbody2D:
   serializedVersion: 4
