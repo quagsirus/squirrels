@@ -130,6 +130,9 @@ public class PlayerOneMove : MonoBehaviour
     void throwing()
     {
         GameObject newAcorn = Instantiate(acorn, transform.position, Quaternion.identity);
-        newAcorn.GetComponent<acornMov>().speed = 20;
+        if (facingRight1)
+        {
+            newAcorn.GetComponent<acornMov>().speed = 20;
+        }
     }
 }
