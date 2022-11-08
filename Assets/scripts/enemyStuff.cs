@@ -9,23 +9,31 @@ public class enemyStuff : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        currentHeath = maxHeath;
     }
     public void takenDamage(int damage)
     {
         currentHeath -= damage;
+        Debug.Log("ouch");
         // add hurt animation here -------------
         if (currentHeath <= 0)
         {
-            //death... to be added soon
+            death();
         }
+    }
+    void death()
+    {
+        Debug.Log("dead");
+        // add death animation here --------------------
+
+        //disable enemy
     }
     
 
     // Update is called once per frame
     void Update()
     {
-        currentHeath = maxHeath;
+        
     }
     private void OnTriggerEnter2D(Collider2D other)
     {

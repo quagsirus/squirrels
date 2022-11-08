@@ -8,6 +8,7 @@ public class P2Punch : MonoBehaviour
     public Transform attackPoint2;
     public float attackRange2 = 0.6f;
     public LayerMask enemyL2;
+    public int attackDamage = 30;
     void Update()
     {
 
@@ -27,6 +28,7 @@ public class P2Punch : MonoBehaviour
         foreach (Collider2D enemy in hitEnemies)
         {
             Debug.Log("we hit " + enemy.name);
+            enemy.GetComponent<enemyStuff>().takenDamage(attackDamage);
         }
     }
     private void OnDrawGizmosSelected()
