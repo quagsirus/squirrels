@@ -8,6 +8,8 @@ public class acornMov : MonoBehaviour
     public Rigidbody2D rbac;
     public float speed = -20;
     public float upl = 2;
+    public int acornDamage = 20;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -33,6 +35,8 @@ public class acornMov : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
+        
+        gameObject.GetComponent<enemyStuff>().takenDamage(acornDamage);
         Destroy(gameObject);
     }
 }

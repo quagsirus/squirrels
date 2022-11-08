@@ -33,7 +33,7 @@ public class P2Punch : MonoBehaviour
         Collider2D[] hitEnemies =  Physics2D.OverlapCircleAll(attackPoint2.position, attackRange2, enemyL2);
         foreach (Collider2D enemy in hitEnemies)
         {
-            Debug.Log("we hit " + enemy.name);
+            Debug.Log("we hit " + enemy.name);  
             enemy.GetComponent<enemyStuff>().takenDamage(attackDamage);
         }
     }
