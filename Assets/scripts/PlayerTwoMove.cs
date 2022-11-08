@@ -8,8 +8,8 @@ public class PlayerTwoMove : MonoBehaviour
 
     public Rigidbody2D rb2;
     public GameObject p2;
-    public GameObject acornR2;
-    public GameObject acornL2;
+    public GameObject acorn;
+    
     public float jumpForceNormal2 = 10;
     public float jumpForceBuff2 = 12;
     private float speed2 = 6;
@@ -19,6 +19,8 @@ public class PlayerTwoMove : MonoBehaviour
     private bool isGrounded2;
     public Transform groundCheck2;
     public float checkRadius2;
+    public float attackRate = 2f;
+    float nextAttackTime = 0;
 
     public LayerMask whatIsGround2;
     SpriteRenderer sprite2;
@@ -50,7 +52,11 @@ public class PlayerTwoMove : MonoBehaviour
             }
             else
             {
-                throwing();
+                if (Time.time >= nextAttackTime)
+                {
+                    throwing();
+                    nextAttackTime = Time.time + 1f / attackRate;
+                }
             }
         }
 
@@ -137,7 +143,10 @@ public class PlayerTwoMove : MonoBehaviour
     //spawns the acorns which have there own logic
     void throwing()
     {
-        if (facingRight2) { Instantiate(acornR2, transform.position, Quaternion.identity); }
-        if (!facingRight2) { Instantiate(acornL2, transform.position, Quaternion.identity); }
+        GameObject newAcorn = Instantiate(acorn, transform.position, Quaternion.identity);
+        if (facingRight2)
+        {
+            newAcorn.GetComponent<acornMov>().speed = 20;
+        }
     }
 }

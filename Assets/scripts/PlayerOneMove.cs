@@ -18,6 +18,8 @@ public class PlayerOneMove : MonoBehaviour
     private bool isGrounded1;
     public Transform groundCheck1;
     public float checkRadius1;
+    public float attackRate = 2f;
+    float nextAttackTime = 0;
 
     public LayerMask whatIsGround1;
     SpriteRenderer sprite1;
@@ -48,8 +50,12 @@ public class PlayerOneMove : MonoBehaviour
                 hitting(); 
             }
             else 
-            { 
-                throwing();
+            {
+                if (Time.time >= nextAttackTime)
+                {
+                    throwing();
+                    nextAttackTime = Time.time + 1f / attackRate;
+                }
             }
         }
 

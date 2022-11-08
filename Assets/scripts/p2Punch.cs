@@ -9,15 +9,21 @@ public class P2Punch : MonoBehaviour
     public float attackRange2 = 0.6f;
     public LayerMask enemyL2;
     public int attackDamage = 30;
+    public float attackRate = 2f;
+    float nextAttackTime = 0;
     void Update()
     {
-
         if (Input.GetKeyDown(KeyCode.Semicolon)) { canPunch2 *= -1; }
-
-        if (Input.GetKeyDown(KeyCode.BackQuote) && canPunch2 == 1)
+        if (Time.time >= nextAttackTime)
         {
-            punch();
+            if (Input.GetKeyDown(KeyCode.BackQuote) && canPunch2 == 1)
+            {
+                punch();
+                nextAttackTime = Time.time + 1f / attackRate;
+            }
         }
+
+        
 
     }
     void punch()

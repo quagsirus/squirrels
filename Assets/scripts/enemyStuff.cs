@@ -26,7 +26,8 @@ public class enemyStuff : MonoBehaviour
         Debug.Log("dead");
         // add death animation here --------------------
 
-        //disable enemy
+        //line of code should be the last thing in this function
+        this.enabled = false;
     }
     
 
