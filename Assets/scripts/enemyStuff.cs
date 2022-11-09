@@ -13,6 +13,7 @@ public class enemyStuff : MonoBehaviour
     Rigidbody2D rb;
     Transform target;
     Vector2 moveDirection;
+    int acornDamage = 20;
     // Start is called before the first frame update
     void Start()
     {
@@ -51,6 +52,7 @@ public class enemyStuff : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         Debug.Log("hit");
+        takenDamage(acornDamage);
     }
     void Flip()
     {
