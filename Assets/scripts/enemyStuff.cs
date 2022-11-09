@@ -8,8 +8,6 @@ public class enemyStuff : MonoBehaviour
     int currentHeath = 50;
     private bool facingRight = false;
     public float movespeed = 5f;
-    public GameObject player1;
-    public GameObject player2;
     Rigidbody2D rb;
     Transform target;
     Vector2 moveDirection;
@@ -17,11 +15,21 @@ public class enemyStuff : MonoBehaviour
     public float play1pos;
     public float play2pos;
     public float selfpos;
-    public float time1 = 6f;
+    private float time1 = 0.25f;
+    public float minD = 1;
     float nTime = 0;
     float one;
     float two;
     int curtarget = 1;
+    int whichWay = -1;
+    private int canPunch = -1;
+    public Transform attackPoint;
+    public float attackRange = 0.6f;
+    public LayerMask player;
+    public int attackDamage = 1;
+    public float attackRate = 2f;
+    float nextAttackTime = 0;
+
     // Start is called before the firllst frame update
     void Start()
     {
@@ -53,10 +61,41 @@ public class enemyStuff : MonoBehaviour
     void Update()
     {
         positions();
-        
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (curtarget == 1)
         {
-            
+            if ((play1pos > selfpos) && (facingRight == false)) { Flip(); }
+            if ((play1pos < selfpos) && (facingRight == true)) { Flip(); }
+            if (inRadius(one))
+            {
+                // add enemy walking animation here ---------
+                rb.velocity = new Vector2(whichWay * movespeed, rb.velocity.y);
+            }
+        }
+        if (curtarget == 2)
+        {
+            if ((play2pos > selfpos) && (facingRight == false)) { Flip(); }
+            if ((play2pos < selfpos) && (facingRight == true)) { Flip(); }
+            if (inRadius(two))
+            {
+                // add enemy walking animation here -------------
+                rb.velocity = new Vector2(whichWay * movespeed, rb.velocity.y);
+            }
+        }
+        if (inRadius(one) || inRadius(two))
+        {
+            ePunch();
+        }
+
+    }
+    void ePunch()
+    {
+        //add attack animation here --------------------
+        Debug.Log("hittting");
+        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, player);
+        foreach (Collider2D enemy in hitEnemies)
+        {
+            Debug.Log("we hit " + enemy.name);
+            enemy.GetComponent<enemyStuff>().takenDamage(attackDamage);
         }
     }
     private void FixedUpdate()
@@ -92,17 +131,17 @@ public class enemyStuff : MonoBehaviour
             }
             else
             {
-                one = play2pos - selfpos;
+                two = play2pos - selfpos;
             }
             
             if (one > two)
             {
-                Debug.Log("playertwo");
+                //Debug.Log("closest to player 2");
                 curtarget = 2;
             }
             else
             {
-                Debug.Log("closest to player 1");
+                //Debug.Log("closest to player 1");
                 curtarget = 1;
             }
         }
@@ -114,8 +153,14 @@ public class enemyStuff : MonoBehaviour
     }
     void Flip()
     {
+        whichWay *= -1;
         //code for fliping the sprite when moving left or right
         facingRight = !facingRight;
         transform.rotation = Quaternion.AngleAxis(180 - transform.eulerAngles.y, Vector3.up);
+    }
+    private bool inRadius(float x)
+    {
+        if (-2 > x || x > 2) { return true; }
+        else { return false; }
     }
 }
