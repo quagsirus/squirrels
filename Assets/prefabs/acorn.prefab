@@ -100,11 +100,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   acorn: {fileID: 6653980313916308350}
+  enemy: {fileID: 7229040614466541835, guid: aae0093e0399f904e88360ffddc2836f, type: 3}
   rbac: {fileID: 0}
   speed: -25
   upl: 7
   acornDamage: 20
-  enemyStuff: {fileID: 0}
 --- !u!50 &6942653227672017791
 Rigidbody2D:
   serializedVersion: 4

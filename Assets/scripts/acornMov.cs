@@ -5,10 +5,11 @@ using UnityEngine;
 public class acornMov : MonoBehaviour
 {
     public GameObject acorn;
+    
     public Rigidbody2D rbac;
     public float speed = -20;
     public float upl = 2;
-    public int acornDamage = 20;
+    public int acornDamage = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -35,8 +36,9 @@ public class acornMov : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
-        
-        gameObject.GetComponent<enemyStuff>().takenDamage(acornDamage);
+
+        //please someone call the function takenDamage(acornDamage) from enemyStuff and apply
+        //it to the enemy it has hit
         Destroy(gameObject);
     }
 }

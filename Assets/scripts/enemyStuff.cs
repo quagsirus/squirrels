@@ -5,7 +5,7 @@ using UnityEngine;
 public class enemyStuff : MonoBehaviour
 {
     public int maxHeath = 50;
-    int currentHeath;
+    int currentHeath = 50;
     private bool facingRight = false;
     public float movespeed = 5;
     public GameObject player1;
@@ -17,7 +17,7 @@ public class enemyStuff : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        currentHeath = maxHeath;
+        currentHeath = 50;
         target = player1.transform;
     }
     public void takenDamage(int damage)
