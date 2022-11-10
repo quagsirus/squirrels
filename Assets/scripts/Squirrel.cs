@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class Squirrel : MonoBehaviour
 {
-    [SerializeField] UiStuff ui;
     Rigidbody2D rb;
     public GameObject acorn;
     public float jumpForceNormal = 10;
@@ -23,7 +22,8 @@ public class Squirrel : MonoBehaviour
     float nextAttackTime = 0;
     public Vector2 buffHitbox;
     Vector2 smallHitbox;
-    public  int currentHeath = 3;
+    public int currentHeath = 3;
+    UiStuff ui;
 
     public LayerMask whatIsGround, enemyLayer;
     BoxCollider2D boxCollider;
@@ -34,7 +34,6 @@ public class Squirrel : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        ui = gameObject.GetComponent<UiStuff>();
         rb = GetComponent<Rigidbody2D>();
         groundCheck = transform.Find("Ground Check");
         transformer = transform.Find("transformer").GetComponent<Animator>();
@@ -141,6 +140,7 @@ public class Squirrel : MonoBehaviour
     {
         //all code for the squence of turning buff
         transformer.Play("turning_buff");
+        animator.SetBool("isBuff", true);
         yield return new WaitForSeconds(0.4f);
         animator.Play("buff_idle");
         isBuff = true;
@@ -155,6 +155,7 @@ public class Squirrel : MonoBehaviour
         isBuff = false;
         CancelBlock();
         transformer.Play("turning_small");
+        animator.SetBool("isBuff", false);
         yield return new WaitForSeconds(0.4f);
         animator.Play("small_idle");
         gameObject.transform.TransformVector(new Vector3(0, 0.25f));
@@ -199,12 +200,15 @@ public class Squirrel : MonoBehaviour
     public void takenDamage(int damage)
     {
         currentHeath -= damage;
-        //ui.updateText(-1);
-        Debug.Log("ouch");
-        // add hurt animation here -------------
+        ui = GameObject.Find("uiOverlay").GetComponent<UiStuff>();
+        ui.SetStat("lives", currentHeath);
         if (currentHeath <= 0)
         {
             death();
+        } else
+        {
+            // Hit animation
+            animator.Play("take_damage");
         }
     }
     void death()

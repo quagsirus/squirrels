@@ -320,8 +320,9 @@ GameObject:
   - component: {fileID: 254908839}
   - component: {fileID: 254908838}
   - component: {fileID: 254908837}
+  - component: {fileID: 254908840}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: uiOverlay
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -409,6 +410,18 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 10
   m_TargetDisplay: 0
+--- !u!114 &254908840
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 254908835}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8b706e85a3543343b0d7c3f3df35c6b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &262925187
 GameObject:
   m_ObjectHideFlags: 0
@@ -1390,9 +1403,8 @@ GameObject:
   - component: {fileID: 945814990}
   - component: {fileID: 945814992}
   - component: {fileID: 945814991}
-  - component: {fileID: 945814993}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: lives
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1515,18 +1527,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 945814989}
   m_CullTransparentMesh: 1
---- !u!114 &945814993
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 945814989}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c8b706e85a3543343b0d7c3f3df35c6b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1121169684
 GameObject:
   m_ObjectHideFlags: 0
@@ -2543,10 +2543,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: playerOne
       objectReference: {fileID: 0}
-    - target: {fileID: 251303369787820634, guid: 53e2ddefc418d2343996c28f4b4eed3e, type: 3}
-      propertyPath: ui
-      value: 
-      objectReference: {fileID: 945814993}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 53e2ddefc418d2343996c28f4b4eed3e, type: 3}
 --- !u!1001 &2345250191902897756
@@ -2680,6 +2676,6 @@ PrefabInstance:
     - target: {fileID: 3384928925075660715, guid: 235f8d45b8362bb4699a0030e1f433c9, type: 3}
       propertyPath: ui
       value: 
-      objectReference: {fileID: 945814993}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 235f8d45b8362bb4699a0030e1f433c9, type: 3}

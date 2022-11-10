@@ -42,7 +42,6 @@ public class enemyStuff : MonoBehaviour
         switch(Random.Range(0,2))
         {
             case 0:
-                Debug.Log("lol");
                 animator.runtimeAnimatorController = Resources.Load("enemy1") as RuntimeAnimatorController;
                 break;
             case 1:
