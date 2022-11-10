@@ -63,6 +63,10 @@ public class enemyStuff : MonoBehaviour
             Debug.Log("ouch");
             animator.Play("dog_hit");
         }
+        if (facingRight)
+        {
+            rb.velocity = new Vector2(-100, rb.velocity.y);
+        }
     }
     IEnumerator Die()
     {
@@ -73,6 +77,7 @@ public class enemyStuff : MonoBehaviour
 
         //line of code below should be the last thing in this function
         Destroy(gameObject);
+        //this.enabled = false;
     }
     
 
