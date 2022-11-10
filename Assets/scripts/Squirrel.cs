@@ -22,6 +22,7 @@ public class Squirrel : MonoBehaviour
     float nextAttackTime = 0;
     public Vector2 buffHitbox;
     Vector2 smallHitbox;
+    public  int currentHeath = 3;
 
     public LayerMask whatIsGround, enemyLayer;
     BoxCollider2D boxCollider;
@@ -193,4 +194,19 @@ public class Squirrel : MonoBehaviour
             newAcorn.GetComponent<acornMov>().speed = 20;
         }
     }
+    public void takenDamage(int damage)
+    {
+        currentHeath -= damage;
+        Debug.Log("ouch");
+        // add hurt animation here -------------
+        if (currentHeath <= 0)
+        {
+            death();
+        }
+    }
+    void death()
+    {
+
+    }
+
 }

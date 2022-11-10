@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class enemyStuff : MonoBehaviour
 {
+    [SerializeField] Squirrel squirrel;
     public int maxHeath = 50;
     int currentHeath = 50;
     private bool facingRight = false;
@@ -51,6 +52,7 @@ public class enemyStuff : MonoBehaviour
 
         //line of code below should be the last thing in this function
         this.enabled = false;
+        Destroy(gameObject);
     }
     
 
@@ -62,7 +64,7 @@ public class enemyStuff : MonoBehaviour
         {
             if ((play1pos > selfpos) && (facingRight == false)) { Flip(); }
             if ((play1pos < selfpos) && (facingRight == true)) { Flip(); }
-            if (inRadius(one))
+            if (inRadius(one) == false)
             {
                 // add enemy walking animation here ---------
                 rb.velocity = new Vector2(whichWay * movespeed, rb.velocity.y);
@@ -72,7 +74,7 @@ public class enemyStuff : MonoBehaviour
         {
             if ((play2pos > selfpos) && (facingRight == false)) { Flip(); }
             if ((play2pos < selfpos) && (facingRight == true)) { Flip(); }
-            if (inRadius(two))
+            if (inRadius(two) == false)
             {
                 // add enemy walking animation here -------------
                 rb.velocity = new Vector2(whichWay * movespeed, rb.velocity.y);
@@ -97,7 +99,7 @@ public class enemyStuff : MonoBehaviour
         foreach (Collider2D player in hitPlayers)
         {
             Debug.Log("we hit " + player.name);
-            //player.GetComponent<PlayerOneMove>().takenDamage(1);
+            squirrel.takenDamage(1);
         }
     }
     private void FixedUpdate()
@@ -146,7 +148,7 @@ public class enemyStuff : MonoBehaviour
     }
     private bool inRadius(float x)
     {
-        if (-2 > x || x > 2) { return true; }
+        if (-2 < x && x < 2) { return true; }
         else { return false; }
     }
 }
