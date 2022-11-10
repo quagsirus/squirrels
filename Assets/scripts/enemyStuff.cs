@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class enemyStuff : MonoBehaviour
 {
-    [SerializeField] Squirrel squirrel;
+    [SerializeField] Squirrel squirrel1;
+    [SerializeField] Squirrel squirrel2;
     public int maxHeath = 50;
     int currentHeath = 50;
     private bool facingRight = false;
@@ -98,8 +99,17 @@ public class enemyStuff : MonoBehaviour
         Collider2D[] hitPlayers = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, playerlayer);
         foreach (Collider2D player in hitPlayers)
         {
-            Debug.Log("we hit " + player.name);
-            squirrel.takenDamage(1);
+            if (player.name == "playerOne")
+            {
+                squirrel1.takenDamage(1);
+                Debug.Log("playerone");
+            }
+            if (player.name == "playerTwo")
+            {
+                squirrel2.takenDamage(1);
+                Debug.Log("playertwo");
+            }
+            
         }
     }
     private void FixedUpdate()
