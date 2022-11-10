@@ -119,7 +119,7 @@ public class Squirrel : MonoBehaviour
     public void Jump()
     {
         //code for jumping, if the player is buff then the jump force is less
-        if (isGrounded)
+        if (isGrounded && !isBuff)
         {
             // if the player is not buff then the jump force will be normal
             if (isBuff == false)
