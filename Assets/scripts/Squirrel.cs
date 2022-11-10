@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class Squirrel : MonoBehaviour
 {
+    [SerializeField] UiStuff ui;
     Rigidbody2D rb;
     public GameObject acorn;
     public float jumpForceNormal = 10;
@@ -33,6 +34,7 @@ public class Squirrel : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        ui = gameObject.GetComponent<UiStuff>();
         rb = GetComponent<Rigidbody2D>();
         groundCheck = transform.Find("Ground Check");
         transformer = transform.Find("transformer").GetComponent<Animator>();
@@ -197,6 +199,7 @@ public class Squirrel : MonoBehaviour
     public void takenDamage(int damage)
     {
         currentHeath -= damage;
+        //ui.updateText(-1);
         Debug.Log("ouch");
         // add hurt animation here -------------
         if (currentHeath <= 0)

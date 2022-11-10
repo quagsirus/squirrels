@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+
 public class enemyStuff : MonoBehaviour
 {
     [SerializeField] Squirrel squirrel1;
@@ -23,7 +23,7 @@ public class enemyStuff : MonoBehaviour
     float two;
     int curtarget = 1;
     int whichWay = -1;
-    Text text;
+    
     public Transform attackPoint;
     public float attackRange = 0.6f;
     public LayerMask playerlayer;
@@ -34,7 +34,7 @@ public class enemyStuff : MonoBehaviour
     // Start is called before the firllst frame update
     void Start()
     {
-        text = GetComponent<Text>();
+        
         sprite = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
         currentHeath = maxHeath;
@@ -54,7 +54,7 @@ public class enemyStuff : MonoBehaviour
     public void takenDamage(int damage)
     {
         currentHeath -= damage;
-        text.text = "lives: " + currentHeath;
+        
         if (currentHeath <= 0)
         {
             StartCoroutine(Die());
