@@ -5,6 +5,7 @@ using UnityEngine;
 public class enemyspawn : MonoBehaviour
 {
     public GameObject enemy;
+    public GameObject self;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,7 +17,7 @@ public class enemyspawn : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            GameObject newEnemy = Instantiate(enemy, transform.position, Quaternion.identity);
+            GameObject newEnemy = Instantiate(enemy, self.transform);
         }
     }
 }
