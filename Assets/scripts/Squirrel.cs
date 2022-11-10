@@ -22,8 +22,9 @@ public class Squirrel : MonoBehaviour
     float nextAttackTime = 0;
     public Vector2 buffHitbox;
     Vector2 smallHitbox;
-    public int currentHeath = 3;
-    UiStuff ui;
+    public int maxHealth = 3;
+    int currentHealth;
+    public UiStuff ui;
 
     public LayerMask whatIsGround, enemyLayer;
     BoxCollider2D boxCollider;
@@ -35,6 +36,9 @@ public class Squirrel : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        currentHealth = maxHealth;
+        ui = GameObject.Find("uiOverlay").GetComponent<UiStuff>();
+        ui.SetStat("lives", currentHealth);
         groundCheck = transform.Find("Ground Check");
         transformer = transform.Find("transformer").GetComponent<Animator>();
         animator = gameObject.GetComponent<Animator>();
@@ -199,10 +203,9 @@ public class Squirrel : MonoBehaviour
     }
     public void takenDamage(int damage)
     {
-        currentHeath -= damage;
-        ui = GameObject.Find("uiOverlay").GetComponent<UiStuff>();
-        ui.SetStat("lives", currentHeath);
-        if (currentHeath <= 0)
+        currentHealth -= damage;
+        ui.SetStat("lives", currentHealth);
+        if (currentHealth <= 0)
         {
             death();
         } else
