@@ -101,6 +101,7 @@ public class enemyStuff : MonoBehaviour
     {
         //add attack animation here --------------------
         Debug.Log("hittting");
+        animator.Play("dog_punch");
         Collider2D[] hitPlayers = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, playerlayer);
         foreach (Collider2D player in hitPlayers)
         {
