@@ -174,13 +174,13 @@ public class Squirrel : MonoBehaviour
         {
             nextAttackTime = Time.time + 1f / attackRate;
             animator.Play("buff_punch");
-            Debug.Log("hittting");
+            //Debug.Log("hittting");
             Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, 2, enemyLayer);
             foreach (Collider2D enemy in hitEnemies)
             {
                 if (enemyLayer == (enemyLayer | (1 << enemy.gameObject.layer)))
                 {
-                    Debug.Log("we hit " + enemy.name);
+                    //Debug.Log("we hit " + enemy.name);
                     enemy.GetComponent<enemyStuff>().takenDamage(punchDamage);
                 }
             }
