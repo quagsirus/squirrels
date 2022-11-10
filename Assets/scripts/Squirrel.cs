@@ -156,7 +156,7 @@ public class Squirrel : MonoBehaviour
         yield return new WaitForSeconds(0.4f);
         animator.Play("small_idle");
         gameObject.transform.TransformVector(new Vector3(0, 0.25f));
-        boxCollider.offset = new Vector2(0, 0.1f);
+        boxCollider.offset = new Vector2(0.0067f, 0.45f);
         boxCollider.size = smallHitbox;
     }
     void Flip()
