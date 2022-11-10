@@ -8,8 +8,9 @@ public class acornMov : MonoBehaviour
     
     public Rigidbody2D rbac;
     public float speed = -20;
-    public float upl = 2;
+    float upl = 5;
     public int acornDamage = 0;
+    public LayerMask enemyLayer;
 
     // Start is called before the first frame update
     void Start()
@@ -31,14 +32,15 @@ public class acornMov : MonoBehaviour
 
     IEnumerator SelfDestruct()
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(3f);
         Destroy(gameObject);
     }
-    private void OnTriggerEnter2D(Collider2D other)
+    private void OnTriggerEnter2D(Collider2D enemy)
     {
-
-        //please someone call the function takenDamage(acornDamage) from enemyStuff and apply
-        //it to the enemy it has hit
-        Destroy(gameObject);
+        if (enemyLayer == (enemyLayer | (1 << enemy.gameObject.layer)))
+        {
+            enemy.GetComponent<enemyStuff>().takenDamage(acornDamage);
+            Destroy(gameObject);
+        }
     }
 }

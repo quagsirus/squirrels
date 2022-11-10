@@ -174,8 +174,11 @@ public class Squirrel : MonoBehaviour
             Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, 2, enemyLayer);
             foreach (Collider2D enemy in hitEnemies)
             {
-                Debug.Log("we hit " + enemy.name);
-                enemy.GetComponent<enemyStuff>().takenDamage(punchDamage);
+                if (enemyLayer == (enemyLayer | (1 << enemy.gameObject.layer)))
+                {
+                    Debug.Log("we hit " + enemy.name);
+                    enemy.GetComponent<enemyStuff>().takenDamage(punchDamage);
+                }
             }
         }
     }

@@ -11,7 +11,6 @@ public class enemyStuff : MonoBehaviour
     Rigidbody2D rb;
     Transform target;
     Vector2 moveDirection;
-    int acornDamage = 20;
     public float play1pos;
     public float play2pos;
     public float selfpos;
@@ -117,24 +116,13 @@ public class enemyStuff : MonoBehaviour
             //Debug.Log(play2pos);
             selfpos = transform.position.x;
             //Debug.Log(selfpos);
-            if (selfpos > play1pos)
-            {
-                one = selfpos - play1pos;
-            }
-            else
-            {
-                one = play1pos - selfpos;
-            }
-            if (selfpos > play2pos)
-            {
-                two = selfpos - play2pos;
-            }
-            else
-            {
-                two = play2pos - selfpos;
-            }
-            
-            if (one > two)
+
+            // Convert to positive number in case of negative
+            one = Mathf.Abs(selfpos - play1pos);
+            two = Mathf.Abs(selfpos - play2pos);
+
+            // Only target player 2 if it is spawned in and closer
+            if (one > two && !GameObject.Find("playerTwo").GetComponent<Animator>().GetBool("isDisconnected"))
             {
                 //Debug.Log("closest to player 2");
                 curtarget = 2;
@@ -145,11 +133,6 @@ public class enemyStuff : MonoBehaviour
                 curtarget = 1;
             }
         }
-    }
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        Debug.Log("hit");
-        takenDamage(acornDamage);
     }
     void Flip()
     {
