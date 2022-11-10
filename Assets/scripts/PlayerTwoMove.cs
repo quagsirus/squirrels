@@ -22,8 +22,13 @@ public class PlayerTwoMove : MonoBehaviour
     public float attackRate = 2f;
     float nextAttackTime = 0;
 
+    bool buttonPressed;
+    float lastInteractionTime;
+    bool isDespawned = true;
+
     public LayerMask whatIsGround2;
     SpriteRenderer sprite2;
+    Animator animator;
 
     //public Animator animator;
 
@@ -32,17 +37,20 @@ public class PlayerTwoMove : MonoBehaviour
     {
         rb2 = GetComponent<Rigidbody2D>();
         sprite2 = GetComponent<SpriteRenderer>();
+        animator = gameObject.GetComponent<Animator>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        buttonPressed = false;
         if (Input.GetKeyDown(KeyCode.Semicolon))
         {
             //if buffOnOrOff1 is true (meaning the player is buff)
             //then player will change back to normal, else player turns buff
             if (buffOnOrOff2) { turningNormal2(); }
             else { turningBuff2(); }
+            buttonPressed = true;
         }
         if (Input.GetKeyDown(KeyCode.BackQuote))
         {
@@ -58,6 +66,7 @@ public class PlayerTwoMove : MonoBehaviour
                     nextAttackTime = Time.time + 1f / attackRate;
                 }
             }
+            buttonPressed = true;
         }
 
         //code for jumping, if the player is buff then the jump force is less
@@ -73,7 +82,7 @@ public class PlayerTwoMove : MonoBehaviour
             {
                 rb2.velocity = Vector2.up * jumpForceBuff2;
             }
-
+            buttonPressed = true;
         }
 
         // animation handling for jump
@@ -85,7 +94,26 @@ public class PlayerTwoMove : MonoBehaviour
         {
             //animator.SetBool("isJumping", true);
         }
-
+        if (Input.GetAxisRaw("Horizontaltwo") != 0)
+        {
+            buttonPressed = true;
+        }
+        // Despawn player 2 if we stop recieving inputs
+        if (buttonPressed)
+        {
+            if (isDespawned)
+            {
+                animator.SetBool("isDisconnected", false);
+                isDespawned = false;
+            }
+            lastInteractionTime = Time.time;
+        }
+        else if (Time.time - lastInteractionTime >= 5 && !isDespawned)
+        {
+            // Plays despawn animation and disables hitbox + renderer
+            animator.SetBool("isDisconnected", true);
+            isDespawned = true;
+        }
     }
     private void FixedUpdate()
     {
@@ -102,15 +130,16 @@ public class PlayerTwoMove : MonoBehaviour
         // if there is a more efficient way to do this then go ahead - emma :)
         if (moveInput2 > 0)
         {
-            //animator.SetBool("isRunning", true);
+            animator.SetBool("isRunning", true);
+
         }
         else if (moveInput2 < 0)
         {
-            //animator.SetBool("isRunning", true);
+            animator.SetBool("isRunning", true);
         }
         else
         {
-            //animator.SetBool("isRunning", false);
+            animator.SetBool("isRunning", false);
         }
     }
     void turningBuff2()
@@ -143,6 +172,7 @@ public class PlayerTwoMove : MonoBehaviour
     //spawns the acorns which have there own logic
     void throwing()
     {
+        animator.Play("small_idlethrow");
         GameObject newAcorn = Instantiate(acorn, transform.position, Quaternion.identity);
         if (facingRight2)
         {

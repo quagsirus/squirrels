@@ -20,17 +20,25 @@ public class PlayerOneMove : MonoBehaviour
     public float checkRadius1;
     public float attackRate = 2f;
     float nextAttackTime = 0;
+    public Vector2 buffHitbox;
+    Vector2 smallHitbox;
 
     public LayerMask whatIsGround1;
     SpriteRenderer sprite1;
+    BoxCollider2D boxCollider;
 
-    public Animator animator;
+    Animator animator;
+    public Animator transformer;
 
     // Start is called before the first frame update
     void Start()
     {
         rb1 = GetComponent<Rigidbody2D>();
         sprite1 = GetComponent<SpriteRenderer>();
+        animator = gameObject.GetComponent<Animator>();
+        boxCollider = gameObject.GetComponent<BoxCollider2D>();
+        animator.SetBool("isDisconnected", false);
+        smallHitbox = boxCollider.size;
     }
 
     // Update is called once per frame
@@ -40,8 +48,8 @@ public class PlayerOneMove : MonoBehaviour
         {
             //if buffOnOrOff1 is true (meaning the player is buff)
             //then player will change back to normal, else player turns buff
-            if (buffOnOrOff1) { turningNormal1(); }
-            else { turningBuff1(); }
+            if (buffOnOrOff1) { StartCoroutine(turningNormal1()); }
+            else { StartCoroutine(turningBuff1()); }
         }
         if (Input.GetKeyDown(KeyCode.G))
         {
@@ -107,20 +115,28 @@ public class PlayerOneMove : MonoBehaviour
             animator.SetBool("isRunning", true);
         }
     }
-    void turningBuff1()
+    IEnumerator turningBuff1()
     {
         //all code for the squence of turning buff
         buffOnOrOff1 = true;
-        rb1.gravityScale = 3.0f;
-        sprite1.color = new Color(1, 0, 0, 1);
+        transformer.Play("turning_buff");
+        yield return new WaitForSeconds(0.4f);
+        animator.Play("buff_idle");
+        gameObject.transform.Translate(new Vector3(0, -0.25f));
+        boxCollider.offset = new Vector2(0.076f, 0.67f);
+        boxCollider.size = buffHitbox;
 
     }
-    void turningNormal1()
+    IEnumerator turningNormal1()
     {
         //all code for the sequence of turing normal
         buffOnOrOff1 = false;
-        rb1.gravityScale = 2f;
-        sprite1.color = new Color(1, 1, 1, 1);
+        transformer.Play("turning_small");
+        yield return new WaitForSeconds(0.4f);
+        animator.Play("small_idle");
+        gameObject.transform.TransformVector(new Vector3(0, 0.25f));
+        boxCollider.offset = new Vector2(0, 0.1f);
+        boxCollider.size = smallHitbox;
     }
     void Flip()
     {
@@ -135,6 +151,7 @@ public class PlayerOneMove : MonoBehaviour
     //spawns the acorns which have there own logic
     void throwing()
     {
+        animator.Play("small_idlethrow");
         GameObject newAcorn = Instantiate(acorn, transform.position, Quaternion.identity);
         if (facingRight1)
         {
