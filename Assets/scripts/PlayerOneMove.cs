@@ -24,5 +24,13 @@ public class PlayerOneMove : MonoBehaviour
         {
             squirrel.Jump();
         }
+        if (Input.GetKeyDown(KeyCode.S))
+        {
+            squirrel.Block();
+        }
+        else if (squirrel.isBlocking && Input.GetKeyUp(KeyCode.S))
+        {
+            squirrel.CancelBlock();
+        }
     }
 }

@@ -21,14 +21,26 @@ public class PlayerTwoMove : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Semicolon))
         {
             squirrel.Transform();
+            buttonPressed = true;
         }
         if (Input.GetKeyDown(KeyCode.BackQuote))
         {
             squirrel.Throw();
+            buttonPressed = true;
         }
         if (Input.GetKeyDown(KeyCode.I))
         {
             squirrel.Jump();
+            buttonPressed = true;
+        }
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            squirrel.Block();
+            buttonPressed = true;
+        }
+        else if (squirrel.isBlocking && Input.GetKeyUp(KeyCode.K))
+        {
+            squirrel.CancelBlock();
         }
 
         // Despawn player 2 if we stop recieving inputs

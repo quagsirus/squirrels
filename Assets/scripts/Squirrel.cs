@@ -9,8 +9,9 @@ public class Squirrel : MonoBehaviour
     public float jumpForceNormal = 10;
     public float jumpForceBuff = 12;
     public string movementAxis;
+    public bool isBlocking;
     float speed = 6;
-    bool buffOnOrOff = false;
+    bool isBuff = false;
     float moveInput;
     bool facingRight = true;
     bool isGrounded;
@@ -77,15 +78,29 @@ public class Squirrel : MonoBehaviour
 
     public void Transform()
     {
-        //if buffOnOrOff is true (meaning the player is buff)
+        //if isBuff is true (meaning the player is buff)
         //then player will change back to normal, else player turns buff
-        if (buffOnOrOff) { StartCoroutine(turningNormal1()); }
-        else { StartCoroutine(turningBuff1()); }
+        if (isBuff) { StartCoroutine(TurningNormal()); }
+        else { StartCoroutine(TurningBuff()); }
+    }
+
+    public void Block()
+    {
+        if (isBuff)
+        {
+            isBlocking = true;
+            animator.SetBool("isBlocking", true);
+        }
+    }
+    public void CancelBlock()
+    {
+        isBlocking = false;
+        animator.SetBool("isBlocking", false);
     }
 
     public void Throw()
     {
-        if (buffOnOrOff == true)
+        if (isBuff == true)
         {
             hitting();
         }
@@ -105,7 +120,7 @@ public class Squirrel : MonoBehaviour
         if (isGrounded)
         {
             // if the player is not buff then the jump force will be normal
-            if (buffOnOrOff == false)
+            if (isBuff == false)
             {
                 rb.velocity = Vector2.up * jumpForceNormal;
                 animator.SetBool("isJumping", true);
@@ -117,22 +132,23 @@ public class Squirrel : MonoBehaviour
         }
     }
 
-    IEnumerator turningBuff1()
+    IEnumerator TurningBuff()
     {
         //all code for the squence of turning buff
-        buffOnOrOff = true;
         transformer.Play("turning_buff");
         yield return new WaitForSeconds(0.4f);
         animator.Play("buff_idle");
+        isBuff = true;
         gameObject.transform.Translate(new Vector3(0, -0.25f));
         boxCollider.offset = new Vector2(0.076f, 0.67f);
         boxCollider.size = buffHitbox;
 
     }
-    IEnumerator turningNormal1()
+    IEnumerator TurningNormal()
     {
         //all code for the sequence of turing normal
-        buffOnOrOff = false;
+        isBuff = false;
+        CancelBlock();
         transformer.Play("turning_small");
         yield return new WaitForSeconds(0.4f);
         animator.Play("small_idle");
