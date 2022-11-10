@@ -35,7 +35,6 @@ public class Squirrel : MonoBehaviour
         transformer = transform.Find("transformer").GetComponent<Animator>();
         animator = gameObject.GetComponent<Animator>();
         boxCollider = gameObject.GetComponent<BoxCollider2D>();
-        animator.SetBool("isDisconnected", false);
         smallHitbox = boxCollider.size;
     }
 
