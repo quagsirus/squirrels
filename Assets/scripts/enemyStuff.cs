@@ -39,6 +39,17 @@ public class enemyStuff : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         currentHeath = maxHeath;
         animator = GetComponent<Animator>();
+        switch(Random.Range(0,2))
+        {
+            case 0:
+                Debug.Log("lol");
+                animator.runtimeAnimatorController = Resources.Load("enemy1") as RuntimeAnimatorController;
+                break;
+            case 1:
+                animator.runtimeAnimatorController = Resources.Load("enemy2") as RuntimeAnimatorController;
+                break;
+        }
+        
     }
     public void takenDamage(int damage)
     {
