@@ -53,7 +53,7 @@ public class enemyStuff : MonoBehaviour
     {
         Debug.Log("dead");
         animator.Play("die");
-        float animationLength = animator.GetCurrentAnimatorStateInfo(0).length;
+        float animationLength = animator.GetCurrentAnimatorStateInfo(0).normalizedTime;
         yield return new WaitForSeconds(animationLength);
 
         //line of code below should be the last thing in this function
@@ -115,10 +115,6 @@ public class enemyStuff : MonoBehaviour
             }
             
         }
-    }
-    private void FixedUpdate()
-    {
-        
     }
     void positions()
     {
