@@ -9,8 +9,7 @@ public class enemyStuff : MonoBehaviour
     private bool facingRight = false;
     public float movespeed = 5f;
     Rigidbody2D rb;
-    Transform target;
-    Vector2 moveDirection;
+    
     public float play1pos;
     public float play2pos;
     public float selfpos;
@@ -21,12 +20,12 @@ public class enemyStuff : MonoBehaviour
     float two;
     int curtarget = 1;
     int whichWay = -1;
-    private int canPunch = -1;
+
     public Transform attackPoint;
     public float attackRange = 0.6f;
-    public LayerMask player;
+    public LayerMask playerlayer;
     public int attackDamage = 1;
-    public float attackRate = 2f;
+    float attackRate = 3f;
     float nextAttackTime = 0;
 
     // Start is called before the firllst frame update
@@ -34,7 +33,6 @@ public class enemyStuff : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         currentHeath = maxHeath;
-        target = GameObject.Find("playerOne").transform;
     }
     public void takenDamage(int damage)
     {
@@ -80,21 +78,26 @@ public class enemyStuff : MonoBehaviour
                 rb.velocity = new Vector2(whichWay * movespeed, rb.velocity.y);
             }
         }
-        if (inRadius(one) || inRadius(two))
+        if (Time.time >= nextAttackTime)
         {
-            ePunch();
+            if (inRadius(one) || inRadius(two))
+            {
+                ePunch();
+            }
+            nextAttackTime = Time.time + attackRate;
         }
+        
 
     }
     void ePunch()
     {
         //add attack animation here --------------------
         Debug.Log("hittting");
-        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, player);
-        foreach (Collider2D enemy in hitEnemies)
+        Collider2D[] hitPlayers = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, playerlayer);
+        foreach (Collider2D player in hitPlayers)
         {
-            Debug.Log("we hit " + enemy.name);
-            enemy.GetComponent<enemyStuff>().takenDamage(attackDamage);
+            Debug.Log("we hit " + player.name);
+            //player.GetComponent<PlayerOneMove>().takenDamage(1);
         }
     }
     private void FixedUpdate()
