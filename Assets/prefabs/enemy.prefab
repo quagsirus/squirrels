@@ -179,15 +179,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 371cfefbadadcab4393763224c8e8159, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  squirrel1: {fileID: 251303369787820634, guid: 53e2ddefc418d2343996c28f4b4eed3e, type: 3}
-  squirrel2: {fileID: 3384928925075660715, guid: 235f8d45b8362bb4699a0030e1f433c9, type: 3}
+  squirrel1: {fileID: 0}
+  squirrel2: {fileID: 0}
   maxHeath: 50
   movespeed: 5
   play1pos: 0
   play2pos: 0
   selfpos: 0
   minD: 1
-  knockback: 50
   attackPoint: {fileID: 460378747957606780}
   attackRange: 0.6
   playerlayer:

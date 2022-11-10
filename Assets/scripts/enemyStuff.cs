@@ -39,6 +39,8 @@ public class enemyStuff : MonoBehaviour
         
         sprite = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
+        squirrel1 = GameObject.Find("playerOne").GetComponent<Squirrel>();
+        squirrel2 = GameObject.Find("playerTwo").GetComponent<Squirrel>();
         currentHeath = maxHeath;
         animator = GetComponent<Animator>();
         switch(Random.Range(0,2))

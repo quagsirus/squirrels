@@ -7,6 +7,7 @@ public class Squirrel : MonoBehaviour
 {
     Rigidbody2D rb;
     public GameObject acorn;
+    public bool isPlayerOne;
     public float jumpForceNormal = 10;
     public float jumpForceBuff = 12;
     public string movementAxis;
@@ -22,9 +23,9 @@ public class Squirrel : MonoBehaviour
     float nextAttackTime = 0;
     public Vector2 buffHitbox;
     Vector2 smallHitbox;
-    public int maxHealth = 3;
-    int currentHealth;
-    public UiStuff ui;
+    static int maxHealth = 3;
+    int squirrelHealth;
+    [SerializeField] UiStuff ui;
 
     public LayerMask whatIsGround, enemyLayer;
     BoxCollider2D boxCollider;
@@ -36,9 +37,15 @@ public class Squirrel : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        currentHealth = maxHealth;
-        ui = GameObject.Find("uiOverlay").GetComponent<UiStuff>();
-        ui.SetStat("lives", currentHealth);
+        squirrelHealth = maxHealth;
+        if (isPlayerOne)
+        {
+            ui.SetStat("p1 Lives", squirrelHealth);
+        } else
+        {
+            ui.SetStat("p2 Lives", squirrelHealth);
+        }
+        Debug.Log(squirrelHealth);
         groundCheck = transform.Find("Ground Check");
         transformer = transform.Find("transformer").GetComponent<Animator>();
         animator = gameObject.GetComponent<Animator>();
@@ -203,9 +210,18 @@ public class Squirrel : MonoBehaviour
     }
     public void takenDamage(int damage)
     {
-        currentHealth -= damage;
-        ui.SetStat("lives", currentHealth);
-        if (currentHealth <= 0)
+        Debug.Log(squirrelHealth);
+        squirrelHealth -= damage;
+        ui = GameObject.Find("uiOverlay").GetComponent<UiStuff>();
+        if (isPlayerOne)
+        {
+            ui.SetStat("p1 Lives", squirrelHealth);
+        } else
+        {
+            ui.SetStat("p2 Lives", squirrelHealth);
+        }
+        
+        if (squirrelHealth <= 0)
         {
             death();
         } else
