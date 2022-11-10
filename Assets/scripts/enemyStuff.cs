@@ -11,7 +11,7 @@ public class enemyStuff : MonoBehaviour
     private bool facingRight = false;
     public float movespeed = 5f;
     Rigidbody2D rb;
-    public Animator animator;
+    Animator animator;
     
     public float play1pos;
     public float play2pos;
@@ -36,6 +36,7 @@ public class enemyStuff : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         currentHeath = maxHeath;
+        animator = GetComponent<Animator>();
     }
     public void takenDamage(int damage)
     {
