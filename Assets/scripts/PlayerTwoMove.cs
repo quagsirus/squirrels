@@ -4,101 +4,38 @@ using UnityEngine;
 
 public class PlayerTwoMove : MonoBehaviour
 {
-    [SerializeField] private LayerMask platformslayerMask;
-
-    public Rigidbody2D rb2;
-    public GameObject p2;
-    public GameObject acorn;
-    
-    public float jumpForceNormal2 = 10;
-    public float jumpForceBuff2 = 12;
-    private float speed2 = 6;
-    public bool buffOnOrOff2 = false;
-    private float moveInput2;
-    private bool facingRight2 = true;
-    private bool isGrounded2;
-    public Transform groundCheck2;
-    public float checkRadius2;
-    public float attackRate = 2f;
-    float nextAttackTime = 0;
-
-    bool buttonPressed;
-    float lastInteractionTime;
-    bool isDespawned = true;
-
-    public LayerMask whatIsGround2;
-    SpriteRenderer sprite2;
+    [SerializeField] Squirrel squirrel;
     Animator animator;
+    bool buttonPressed;
+    bool isDespawned = true;
+    float lastInteractionTime;
 
-    //public Animator animator;
-
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
-        rb2 = GetComponent<Rigidbody2D>();
-        sprite2 = GetComponent<SpriteRenderer>();
+        squirrel = gameObject.GetComponent<Squirrel>();
         animator = gameObject.GetComponent<Animator>();
+        animator.SetBool("isDisconnected", true);
     }
-
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        buttonPressed = false;
         if (Input.GetKeyDown(KeyCode.Semicolon))
         {
-            //if buffOnOrOff1 is true (meaning the player is buff)
-            //then player will change back to normal, else player turns buff
-            if (buffOnOrOff2) { turningNormal2(); }
-            else { turningBuff2(); }
-            buttonPressed = true;
+            squirrel.Transform();
         }
         if (Input.GetKeyDown(KeyCode.BackQuote))
         {
-            if (buffOnOrOff2 == true)
-            {
-                hitting();
-            }
-            else
-            {
-                if (Time.time >= nextAttackTime)
-                {
-                    throwing();
-                    nextAttackTime = Time.time + 1f / attackRate;
-                }
-            }
-            buttonPressed = true;
+            squirrel.Throw();
+        }
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            squirrel.Jump();
         }
 
-        //code for jumping, if the player is buff then the jump force is less
-        if (Input.GetKeyDown(KeyCode.I) && isGrounded2)
-        {
-            // if the player is not buff then the jump force will be normal
-            if (buffOnOrOff2 == false)
-            {
-                rb2.velocity = Vector2.up * jumpForceNormal2;
-                //animator.SetBool("isJumping", true);
-            }
-            else
-            {
-                rb2.velocity = Vector2.up * jumpForceBuff2;
-            }
-            buttonPressed = true;
-        }
-
-        // animation handling for jump
-        if (isGrounded2)
-        {
-            //animator.SetBool("isJumping", false);
-        }
-        else
-        {
-            //animator.SetBool("isJumping", true);
-        }
-        if (Input.GetAxisRaw("Horizontaltwo") != 0)
-        {
-            buttonPressed = true;
-        }
         // Despawn player 2 if we stop recieving inputs
+        if (Input.GetAxisRaw(squirrel.movementAxis) != 0)
+        {
+            buttonPressed = true;
+        }
         if (buttonPressed)
         {
             if (isDespawned)
@@ -113,70 +50,6 @@ public class PlayerTwoMove : MonoBehaviour
             // Plays despawn animation and disables hitbox + renderer
             animator.SetBool("isDisconnected", true);
             isDespawned = true;
-        }
-    }
-    private void FixedUpdate()
-    {
-        //controls weather the player is grounded or not
-        isGrounded2 = Physics2D.OverlapCircle(groundCheck2.position, checkRadius2, whatIsGround2);
-        moveInput2 = Input.GetAxisRaw("Horizontaltwo");
-        rb2.velocity = new Vector2(moveInput2 * speed2, rb2.velocity.y);
-
-        //flips player when moving as moveinput will be 1 or -1
-        if (facingRight2 == false && moveInput2 > 0) { Flip(); }
-        else if (facingRight2 == true && moveInput2 < 0) { Flip(); }
-
-        //will play run animation when running left or right
-        // if there is a more efficient way to do this then go ahead - emma :)
-        if (moveInput2 > 0)
-        {
-            animator.SetBool("isRunning", true);
-
-        }
-        else if (moveInput2 < 0)
-        {
-            animator.SetBool("isRunning", true);
-        }
-        else
-        {
-            animator.SetBool("isRunning", false);
-        }
-    }
-    void turningBuff2()
-    {
-        //all code for the squence of turning buff
-        buffOnOrOff2 = true;
-        rb2.gravityScale = 3.0f;
-        sprite2.color = new Color(1, 0, 0, 1);
-
-    }
-    void turningNormal2()
-    {
-        //all code for the sequence of turing normal
-        buffOnOrOff2 = false;
-        rb2.gravityScale = 2.0f;
-        sprite2.color = new Color(1, 1, 1, 1);
-    }
-    void Flip()
-    {
-        //code for fliping the sprite when moving left or right
-        facingRight2 = !facingRight2;
-        Vector3 Scaler = transform.localScale;
-        Scaler.x *= -1;
-        transform.localScale = Scaler;
-    }
-    void hitting()
-    {
-        // this has been moved to p1Punch script
-    }
-    //spawns the acorns which have there own logic
-    void throwing()
-    {
-        animator.Play("small_idlethrow");
-        GameObject newAcorn = Instantiate(acorn, transform.position, Quaternion.identity);
-        if (facingRight2)
-        {
-            newAcorn.GetComponent<acornMov>().speed = 20;
         }
     }
 }
