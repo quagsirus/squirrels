@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Net.Sockets;
 using UnityEngine;
 
 public class Squirrel : MonoBehaviour
@@ -12,17 +13,17 @@ public class Squirrel : MonoBehaviour
     public bool isBlocking;
     float speed = 6;
     bool isBuff = false;
-    float moveInput;
+    float moveInput, checkRadius;
     bool facingRight = true;
     bool isGrounded;
-    Transform groundCheck;
-    public float checkRadius;
+    Transform groundCheck, attackPoint;
+    public int punchDamage = 30;
     public float attackRate = 2f;
     float nextAttackTime = 0;
     public Vector2 buffHitbox;
     Vector2 smallHitbox;
 
-    public LayerMask whatIsGround;
+    public LayerMask whatIsGround, enemyLayer;
     BoxCollider2D boxCollider;
 
     Animator transformer;
@@ -37,6 +38,7 @@ public class Squirrel : MonoBehaviour
         animator = gameObject.GetComponent<Animator>();
         boxCollider = gameObject.GetComponent<BoxCollider2D>();
         smallHitbox = boxCollider.size;
+        attackPoint = transform.Find("attackPoint");
     }
 
     // Update is called once per frame
@@ -100,9 +102,9 @@ public class Squirrel : MonoBehaviour
 
     public void Throw()
     {
-        if (isBuff == true)
+        if (isBuff)
         {
-            hitting();
+            Punch();
         }
         else
         {
@@ -162,10 +164,22 @@ public class Squirrel : MonoBehaviour
         facingRight = !facingRight;
         transform.rotation = Quaternion.AngleAxis(180 - transform.eulerAngles.y, Vector3.up);
     }
-    void hitting()
+    void Punch()
     {
-        // this has been moved to p1Punch script
+        if (Time.time >= nextAttackTime)
+        {
+            nextAttackTime = Time.time + 1f / attackRate;
+            animator.Play("buff_punch");
+            Debug.Log("hittting");
+            Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, 2, enemyLayer);
+            foreach (Collider2D enemy in hitEnemies)
+            {
+                Debug.Log("we hit " + enemy.name);
+                enemy.GetComponent<enemyStuff>().takenDamage(punchDamage);
+            }
+        }
     }
+
     //spawns the acorns which have there own logic
     void throwing()
     {
