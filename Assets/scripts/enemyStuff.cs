@@ -11,6 +11,7 @@ public class enemyStuff : MonoBehaviour
     private bool facingRight = false;
     public float movespeed = 5f;
     Rigidbody2D rb;
+    public Animator animator;
     
     public float play1pos;
     public float play2pos;
@@ -39,20 +40,23 @@ public class enemyStuff : MonoBehaviour
     public void takenDamage(int damage)
     {
         currentHeath -= damage;
-        Debug.Log("ouch");
-        // add hurt animation here -------------
         if (currentHeath <= 0)
         {
-            death();
+            StartCoroutine(Die());
+        } else
+        {
+            Debug.Log("ouch");
+            animator.Play("dog_hit");
         }
     }
-    void death()
+    IEnumerator Die()
     {
         Debug.Log("dead");
-        // add death animation here --------------------
+        animator.Play("die");
+        float animationLength = animator.GetCurrentAnimatorStateInfo(0).length;
+        yield return new WaitForSeconds(animationLength);
 
         //line of code below should be the last thing in this function
-        this.enabled = false;
         Destroy(gameObject);
     }
     
