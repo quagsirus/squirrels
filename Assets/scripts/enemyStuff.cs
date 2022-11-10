@@ -109,7 +109,7 @@ public class enemyStuff : MonoBehaviour
                 squirrel1.takenDamage(1);
                 Debug.Log("playerone");
             }
-            if (player.name == "playerTwo")
+            if (player.name == "playerTwo" && !squirrel2.isDespawned)
             {
                 squirrel2.takenDamage(1);
                 Debug.Log("playertwo");

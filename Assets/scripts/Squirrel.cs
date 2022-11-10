@@ -10,7 +10,7 @@ public class Squirrel : MonoBehaviour
     public float jumpForceNormal = 10;
     public float jumpForceBuff = 12;
     public string movementAxis;
-    public bool isBlocking;
+    public bool isBlocking, isDespawned;
     float speed = 6;
     bool isBuff = false;
     float moveInput, checkRadius;

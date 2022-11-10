@@ -7,7 +7,6 @@ public class PlayerTwoMove : MonoBehaviour
     [SerializeField] Squirrel squirrel;
     Animator animator;
     bool buttonPressed;
-    bool isDespawned = true;
     float lastInteractionTime;
 
     private void Start()
@@ -15,6 +14,7 @@ public class PlayerTwoMove : MonoBehaviour
         squirrel = gameObject.GetComponent<Squirrel>();
         animator = gameObject.GetComponent<Animator>();
         animator.SetBool("isDisconnected", true);
+        squirrel.isDespawned = true;
     }
     private void Update()
     {
@@ -50,18 +50,18 @@ public class PlayerTwoMove : MonoBehaviour
         }
         if (buttonPressed)
         {
-            if (isDespawned)
+            if (squirrel.isDespawned)
             {
                 animator.SetBool("isDisconnected", false);
-                isDespawned = false;
+                squirrel.isDespawned = false;
             }
             lastInteractionTime = Time.time;
         }
-        else if (Time.time - lastInteractionTime >= 5 && !isDespawned)
+        else if (Time.time - lastInteractionTime >= 5 && !squirrel.isDespawned)
         {
             // Plays despawn animation and disables hitbox + renderer
             animator.SetBool("isDisconnected", true);
-            isDespawned = true;
+            squirrel.isDespawned = true;
         }
     }
 }
