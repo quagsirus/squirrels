@@ -23,7 +23,9 @@ public class enemyStuff : MonoBehaviour
     float two;
     int curtarget = 1;
     int whichWay = -1;
-    
+    int knockback = 10;
+
+
     public Transform attackPoint;
     public float attackRange = 0.6f;
     public LayerMask playerlayer;
@@ -42,6 +44,7 @@ public class enemyStuff : MonoBehaviour
         switch(Random.Range(0,2))
         {
             case 0:
+                //Debug.Log("lol");
                 animator.runtimeAnimatorController = Resources.Load("enemy1") as RuntimeAnimatorController;
                 break;
             case 1:
@@ -59,17 +62,21 @@ public class enemyStuff : MonoBehaviour
             StartCoroutine(Die());
         } else
         {
-            Debug.Log("ouch");
+            //Debug.Log("ouch");
             animator.Play("dog_hit");
         }
         if (facingRight)
         {
-            rb.velocity = new Vector2(-100, rb.velocity.y);
+            rb.velocity = new Vector2(-1 * knockback, rb.velocity.y);
+        }
+        if (facingRight == false)
+        {
+            rb.velocity = new Vector2(knockback, rb.velocity.y);
         }
     }
     IEnumerator Die()
     {
-        Debug.Log("dead");
+        //Debug.Log("dead");
         animator.Play("die");
         float animationLength = animator.GetCurrentAnimatorStateInfo(0).normalizedTime;
         yield return new WaitForSeconds(animationLength);
@@ -78,9 +85,7 @@ public class enemyStuff : MonoBehaviour
         Destroy(gameObject);
         //this.enabled = false;
     }
-    
 
-    // Update is called once per frame
     void Update()
     {
         positions();
@@ -120,7 +125,7 @@ public class enemyStuff : MonoBehaviour
         
         
         //add attack animation here --------------------
-        Debug.Log("hittting");
+        //Debug.Log("hittting");
         animator.Play("dog_punch");
         Collider2D[] hitPlayers = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, playerlayer);
         foreach (Collider2D player in hitPlayers)
@@ -128,12 +133,12 @@ public class enemyStuff : MonoBehaviour
             if (player.name == "playerOne")
             {
                 squirrel1.takenDamage(1);
-                Debug.Log("playerone");
+                //Debug.Log("playerone");
             }
             if (player.name == "playerTwo" && !squirrel2.isDespawned)
             {
                 squirrel2.takenDamage(1);
-                Debug.Log("playertwo");
+                //Debug.Log("playertwo");
             }
             
         }

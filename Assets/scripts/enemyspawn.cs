@@ -9,15 +9,26 @@ public class enemyspawn : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        StartCoroutine(spawn());
         
     }
 
     // Update is called once per frame
     void Update()
     {
+        
+        //GameObject newEnemy = Instantiate(enemy, self.transform);
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            GameObject newEnemy = Instantiate(enemy, self.transform);
+            //GameObject newEnemy = Instantiate(enemy, self.transform);
         }
+    }
+    IEnumerator spawn()
+    {
+        
+        yield return new WaitForSeconds(4);
+        GameObject newEnemy = Instantiate(enemy, self.transform);
+        StartCoroutine(spawn());
+
     }
 }
