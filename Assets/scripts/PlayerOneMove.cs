@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerOneMove : MonoBehaviour
 {
@@ -12,6 +13,10 @@ public class PlayerOneMove : MonoBehaviour
     }
     private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            SceneManager.LoadScene("Main");
+        }
         if (Input.GetKeyDown(KeyCode.F))
         {
             squirrel.Transform();
