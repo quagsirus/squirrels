@@ -73,10 +73,10 @@ public class Squirrel : MonoBehaviour
         //controls weather the player is grounded or not
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, checkRadius, whatIsGround);
         moveInput = Input.GetAxisRaw(movementAxis);
-        rb.velocity = new Vector2(moveInput * speed, rb.velocity.y);
 
         if (!isDead)
         {
+            rb.velocity = new Vector2(moveInput * speed, rb.velocity.y);
             //flips player when moving as moveinput will be 1 or -1
             if (!facingRight && moveInput > 0) { Flip(); }
             else if (facingRight && moveInput < 0) { Flip(); }
@@ -217,18 +217,21 @@ public class Squirrel : MonoBehaviour
         
         if (squirrelHealth <= 0)
         {
-            Death();
+            StartCoroutine(Death());
         } else
         {
             // Hit animation
             animator.Play("take_damage");
         }
     }
-    void Death()
+    IEnumerator Death()
     {
         gameObject.layer = 0;
         animator.SetBool("isDead", true);
         animator.Play("die");
+        yield return new WaitForSeconds(0.1f);
+        float animationLength = animator.GetCurrentAnimatorStateInfo(0).length;
+        yield return new WaitForSeconds(animationLength);
         isDead = true;
     }
 

@@ -83,7 +83,8 @@ public class enemyStuff : MonoBehaviour
         dead = true; 
         //Debug.Log("dead");
         animator.Play("die");
-        float animationLength = animator.GetCurrentAnimatorStateInfo(0).normalizedTime * 3;
+        yield return new WaitForSeconds(0.1f);
+        float animationLength = animator.GetCurrentAnimatorStateInfo(0).length;
         yield return new WaitForSeconds(animationLength);
 
         //line of code below should be the last thing in this function
