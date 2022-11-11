@@ -7,11 +7,10 @@ public class Squirrel : MonoBehaviour
 {
     Rigidbody2D rb;
     public GameObject acorn;
-    public bool isPlayerOne, isDead;
     public float jumpForceNormal = 10;
     public float jumpForceBuff = 12;
     public string movementAxis;
-    public bool isBlocking, isDespawned;
+    public bool isBlocking, isDespawned, isDead, isPlayerOne, isDying;
     float speed = 6;
     bool isBuff;
     float moveInput, checkRadius;
@@ -74,7 +73,7 @@ public class Squirrel : MonoBehaviour
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, checkRadius, whatIsGround);
         moveInput = Input.GetAxisRaw(movementAxis);
 
-        if (!isDead)
+        if (!isDying)
         {
             rb.velocity = new Vector2(moveInput * speed, rb.velocity.y);
             //flips player when moving as moveinput will be 1 or -1
@@ -227,7 +226,8 @@ public class Squirrel : MonoBehaviour
     IEnumerator Death()
     {
         gameObject.layer = 0;
-        animator.SetBool("isDead", true);
+        isDying = true;
+        animator.SetBool("isDying", true);
         animator.Play("die");
         yield return new WaitForSeconds(0.1f);
         float animationLength = animator.GetCurrentAnimatorStateInfo(0).length;
