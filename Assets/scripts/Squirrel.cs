@@ -137,16 +137,8 @@ public class Squirrel : MonoBehaviour
         //code for jumping, if the player is buff then the jump force is less
         if (isGrounded && !isBuff)
         {
-            // if the player is not buff then the jump force will be normal
-            if (isBuff == false)
-            {
-                rb.velocity = Vector2.up * jumpForceNormal;
-                animator.SetBool("isJumping", true);
-            }
-            else
-            {
-                rb.velocity = Vector2.up * jumpForceBuff;
-            }
+            rb.velocity = Vector2.up * jumpForceNormal;
+            animator.SetBool("isJumping", true);
         }
     }
 
