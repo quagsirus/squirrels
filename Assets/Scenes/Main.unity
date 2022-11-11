@@ -628,7 +628,7 @@ MonoBehaviour:
   m_Camera: {fileID: 1547025488}
   m_StartGame: {fileID: 1965410007}
   m_OpenSettings: {fileID: 1639393410}
-  m_ReturnFromSettings: {fileID: 1631854644}
+  m_ReturnFromSettings: {fileID: 1688643660}
   m_MainCameraPos: {x: 0, y: 10, z: 0}
   m_SettingsCameraPos: {x: 0, y: 10, z: -11}
 --- !u!4 &658802809
