@@ -24,6 +24,7 @@ public class PlayerTwoMove : MonoBehaviour
     {
         if (!squirrel.isDead)
         {
+            buttonPressed = false;
             if (Input.GetKeyDown(KeyCode.Semicolon))
             {
                 squirrel.Transform();
