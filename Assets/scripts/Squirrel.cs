@@ -156,7 +156,7 @@ public class Squirrel : MonoBehaviour
         animator.Play("buff_idle");
         isBuff = true;
         gameObject.transform.Translate(new Vector3(0, -0.25f));
-        boxCollider.offset = new Vector2(0.076f, 0.67f);
+        boxCollider.offset = new Vector2(0.076f, 0.71f);
         boxCollider.size = buffHitbox;
 
     }

@@ -361,7 +361,6 @@ MonoBehaviour:
   punchDamage: 30
   attackRate: 2
   buffHitbox: {x: 0.58, y: 1.26}
-  maxHealth: 3
   ui: {fileID: 0}
   whatIsGround:
     serializedVersion: 2

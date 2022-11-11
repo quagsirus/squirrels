@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class enemyStuff : MonoBehaviour
@@ -21,6 +22,7 @@ public class enemyStuff : MonoBehaviour
     float nTime = 0;
     float one;
     float two;
+    bool dead;
     int curtarget = 1;
     int whichWay = -1;
     int knockback = 10;
@@ -78,9 +80,10 @@ public class enemyStuff : MonoBehaviour
     }
     IEnumerator Die()
     {
+        dead = true; 
         //Debug.Log("dead");
         animator.Play("die");
-        float animationLength = animator.GetCurrentAnimatorStateInfo(0).normalizedTime;
+        float animationLength = animator.GetCurrentAnimatorStateInfo(0).normalizedTime * 3;
         yield return new WaitForSeconds(animationLength);
 
         //line of code below should be the last thing in this function
@@ -90,37 +93,37 @@ public class enemyStuff : MonoBehaviour
 
     void Update()
     {
-        positions();
-        if (curtarget == 1)
-        {
-            if ((play1pos > selfpos) && (facingRight == false)) { Flip(); }
-            if ((play1pos < selfpos) && (facingRight == true)) { Flip(); }
-            if (inRadius(one) == false)
+        if (!dead) {
+            positions();
+            if (curtarget == 1)
             {
-                // add enemy walking animation here ---------
-                rb.velocity = new Vector2(whichWay * movespeed, rb.velocity.y);
+                if ((play1pos > selfpos) && (facingRight == false)) { Flip(); }
+                if ((play1pos < selfpos) && (facingRight == true)) { Flip(); }
+                if (inRadius(one) == false)
+                {
+                    // add enemy walking animation here ---------
+                    rb.velocity = new Vector2(whichWay * movespeed, rb.velocity.y);
+                }
+            }
+            if (curtarget == 2)
+            {
+                if ((play2pos > selfpos) && (facingRight == false)) { Flip(); }
+                if ((play2pos < selfpos) && (facingRight == true)) { Flip(); }
+                if (inRadius(two) == false)
+                {
+                    // add enemy walking animation here -------------
+                    rb.velocity = new Vector2(whichWay * movespeed, rb.velocity.y);
+                }
+            }
+            if (Time.time >= nextAttackTime)
+            {
+                if (inRadius(one) || inRadius(two))
+                {
+                    ePunch();
+                }
+                nextAttackTime = Time.time + attackRate;
             }
         }
-        if (curtarget == 2)
-        {
-            if ((play2pos > selfpos) && (facingRight == false)) { Flip(); }
-            if ((play2pos < selfpos) && (facingRight == true)) { Flip(); }
-            if (inRadius(two) == false)
-            {
-                // add enemy walking animation here -------------
-                rb.velocity = new Vector2(whichWay * movespeed, rb.velocity.y);
-            }
-        }
-        if (Time.time >= nextAttackTime)
-        {
-            if (inRadius(one) || inRadius(two))
-            {
-                ePunch();
-            }
-            nextAttackTime = Time.time + attackRate;
-        }
-        
-
     }
     void ePunch()
     {
