@@ -15,10 +15,6 @@ public class PlayerOneMove : MonoBehaviour
     {
         if (!squirrel.isDead)
         {
-            if (Input.GetKeyDown(KeyCode.Escape))
-            {
-                SceneManager.LoadScene("Main");
-            }
             if (Input.GetKeyDown(KeyCode.F))
             {
                 squirrel.Transform();
