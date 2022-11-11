@@ -124,25 +124,24 @@ public class enemyStuff : MonoBehaviour
     }
     void ePunch()
     {
-        
-        
-        //add attack animation here --------------------
-        //Debug.Log("hittting");
         animator.Play("dog_punch");
         Collider2D[] hitPlayers = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, playerlayer);
         foreach (Collider2D player in hitPlayers)
         {
             if (player.name == "playerOne")
             {
-                squirrel1.takenDamage(1);
-                //Debug.Log("playerone");
+                if (!squirrel1.isBlocking)
+                {
+                    squirrel1.takenDamage(1);
+                }
             }
             if (player.name == "playerTwo" && !squirrel2.isDespawned)
             {
-                squirrel2.takenDamage(1);
-                //Debug.Log("playertwo");
+                if (!squirrel2.isBlocking)
+                {
+                    squirrel2.takenDamage(1);
+                }
             }
-            
         }
         
     }
