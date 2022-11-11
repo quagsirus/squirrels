@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class MenuButtons : MonoBehaviour
 {
     public Camera m_Camera;
-    public Button m_StartGame, m_OpenSettings, m_ReturnFromSettings;
+    public Button m_StartGame, m_OpenSettings, m_ReturnFromSettings, m_Quit;
     public Vector3 m_MainCameraPos, m_SettingsCameraPos;
     private int currentMenu;
     const int MAIN = 0;
@@ -21,6 +21,7 @@ public class MenuButtons : MonoBehaviour
         m_StartGame.onClick.AddListener(StartGame);
         m_OpenSettings.onClick.AddListener(OpenSettings);
         m_ReturnFromSettings.onClick.AddListener(Return);
+        m_Quit.onClick.AddListener(Quit);
         positions = new[] { m_MainCameraPos, m_SettingsCameraPos };
     }
 
@@ -45,4 +46,8 @@ public class MenuButtons : MonoBehaviour
         currentMenu = MAIN;
     }
     
+    void Quit()
+    {
+        Application.Quit();
+    }
 }
