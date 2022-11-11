@@ -25,7 +25,7 @@ public class Squirrel : MonoBehaviour
     Vector2 smallHitbox;
     static int maxHealth = 3;
     int squirrelHealth;
-    [HideInInspector] [SerializeField] UiStuff ui;
+    [HideInInspector] UiStuff ui;
 
     public LayerMask whatIsGround, enemyLayer;
     BoxCollider2D boxCollider;
