@@ -235,7 +235,8 @@ public class Squirrel : MonoBehaviour
     {
         gameObject.tag = "";
         gameObject.layer = 0;
-        animator.Play("die");
+
+        animator.Play("dog_ballroll");
         isDead = true;
     }
 

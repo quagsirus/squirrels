@@ -182,7 +182,7 @@ GameObject:
   - component: {fileID: 251303369787820583}
   - component: {fileID: 251303369787820580}
   - component: {fileID: 251303369787820634}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: playerOne
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -353,6 +353,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   acorn: {fileID: 6653980313916308350, guid: 56f8f7357fb0d6748bef023c6f3a2dcb, type: 3}
   isPlayerOne: 1
+  isDead: 0
   jumpForceNormal: 10
   jumpForceBuff: 12
   movementAxis: Horizontal
