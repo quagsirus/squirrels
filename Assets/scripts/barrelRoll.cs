@@ -27,7 +27,6 @@ public class barrelRoll : MonoBehaviour
         {
             if (player.name == "playerOne")
             {
-                Debug.Log("player");
                 squirrel1.takenDamage(1);
                 Destroy(gameObject);
             }
@@ -36,8 +35,8 @@ public class barrelRoll : MonoBehaviour
                 squirrel2.takenDamage(1);
                 Destroy(gameObject);
             }
-            Debug.Log("player");
+            
         }
-        Debug.Log("hlakh");
+        
     }
 }
