@@ -137,8 +137,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d89f84d7c4fa4b48bfa502033ca5104, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  squirrel1: {fileID: 251303369787820634, guid: 53e2ddefc418d2343996c28f4b4eed3e, type: 3}
-  squirrel2: {fileID: 3384928925075660715, guid: 235f8d45b8362bb4699a0030e1f433c9, type: 3}
+  squirrel1: {fileID: 0}
+  squirrel2: {fileID: 0}
   moveSpeed: 5
 --- !u!58 &144752957870164641
 CircleCollider2D:

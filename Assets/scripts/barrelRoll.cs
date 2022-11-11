@@ -4,14 +4,16 @@ using UnityEngine;
 
 public class barrelRoll : MonoBehaviour
 {
-    [SerializeField] Squirrel squirrel1;
-    [SerializeField] Squirrel squirrel2;
+    [SerializeField] [HideInInspector] Squirrel squirrel1;
+    [SerializeField] [HideInInspector] Squirrel squirrel2;
     Rigidbody2D rb;
     public int moveSpeed = 30;
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        squirrel1 = GameObject.Find("playerOne").GetComponent<Squirrel>();
+        squirrel2 = GameObject.Find("playerTwo").GetComponent<Squirrel>();
     }
 
     // Update is called once per frame
