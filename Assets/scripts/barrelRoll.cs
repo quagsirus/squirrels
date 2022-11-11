@@ -19,12 +19,13 @@ public class barrelRoll : MonoBehaviour
     {
         rb.velocity = new Vector2(moveSpeed, rb.velocity.y);
     }
-    private void OnTriggerEnter2D(Collider2D player)
+    public void OnTriggerEnter2D(Collider2D player)
     {
         if (player.gameObject.tag == "Player")
         {
             if (player.name == "playerOne")
             {
+                Debug.Log("player");
                 squirrel1.takenDamage(1);
             }
             if (player.name == "playerTwo")
@@ -33,5 +34,6 @@ public class barrelRoll : MonoBehaviour
             }
             Debug.Log("player");
         }
+        Debug.Log("hlakh");
     }
 }
