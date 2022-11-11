@@ -29,10 +29,12 @@ public class barrelRoll : MonoBehaviour
             {
                 Debug.Log("player");
                 squirrel1.takenDamage(1);
+                Destroy(gameObject);
             }
             if (player.name == "playerTwo")
             {
                 squirrel2.takenDamage(1);
+                Destroy(gameObject);
             }
             Debug.Log("player");
         }
