@@ -25,7 +25,7 @@ public class Squirrel : MonoBehaviour
     Vector2 smallHitbox;
     static int maxHealth = 3;
     int squirrelHealth;
-    [HideInInspector] UiStuff ui;
+    [HideInInspector] public UiStuff ui;
 
     public LayerMask whatIsGround, enemyLayer;
     BoxCollider2D boxCollider;
@@ -216,6 +216,7 @@ public class Squirrel : MonoBehaviour
         squirrelHealth -= damage;
         if (isPlayerOne)
         {
+            Debug.Log(ui);
             ui.SetStat("p1 Lives", squirrelHealth);
         } else
         {
@@ -235,7 +236,7 @@ public class Squirrel : MonoBehaviour
     {
         gameObject.tag = "";
         gameObject.layer = 0;
-
+        animator.SetBool("isDead", true);
         animator.Play("dog_ballroll");
         isDead = true;
     }
