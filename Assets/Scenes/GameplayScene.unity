@@ -5304,10 +5304,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3384928925075660704, guid: 235f8d45b8362bb4699a0030e1f433c9, type: 3}
-      propertyPath: m_GravityScale
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 3384928925075660706, guid: 235f8d45b8362bb4699a0030e1f433c9, type: 3}
       propertyPath: m_Name
       value: playerTwo

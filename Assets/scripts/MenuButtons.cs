@@ -10,9 +10,6 @@ public class MenuButtons : MonoBehaviour
     public Button m_StartGame, m_OpenSettings, m_ReturnFromSettings, m_HowToPlay, m_ReturnFromHTP, m_Quit;
     public Vector3 m_MainCameraPos, m_SettingsCameraPos;
     public GameObject m_settings, m_htpCanvas;
-    private int currentMenu;
-    const int MAIN = 0;
-    const int SETTINGS = 1;
     private Vector3[] positions;
 
     // Start is called before the first frame update
@@ -41,7 +38,6 @@ public class MenuButtons : MonoBehaviour
 
     void OpenSettings()
     {
-        currentMenu = SETTINGS;
         m_settings.SetActive(true);
     }
 
@@ -52,7 +48,6 @@ public class MenuButtons : MonoBehaviour
 
     void Return()
     {
-        currentMenu = MAIN;
         m_settings.SetActive(false);
         m_htpCanvas.SetActive(false);
     }

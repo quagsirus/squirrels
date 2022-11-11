@@ -6,6 +6,8 @@ public class PlayerTwoMove : MonoBehaviour
 {
     [SerializeField] Squirrel squirrel;
     Animator animator;
+    Rigidbody2D rb;
+    BoxCollider2D box;
     bool buttonPressed;
     float lastInteractionTime;
 
@@ -13,6 +15,8 @@ public class PlayerTwoMove : MonoBehaviour
     {
         squirrel = gameObject.GetComponent<Squirrel>();
         animator = gameObject.GetComponent<Animator>();
+        rb = gameObject.GetComponent<Rigidbody2D>();
+        box = gameObject.GetComponent<BoxCollider2D>();
         animator.SetBool("isDisconnected", true);
         squirrel.isDespawned = true;
     }
@@ -56,6 +60,8 @@ public class PlayerTwoMove : MonoBehaviour
                 {
                     animator.SetBool("isDisconnected", false);
                     squirrel.isDespawned = false;
+                    rb.gravityScale = 1;
+                    box.enabled = true;
                 }
                 lastInteractionTime = Time.time;
             }
@@ -64,6 +70,8 @@ public class PlayerTwoMove : MonoBehaviour
                 // Plays despawn animation and disables hitbox + renderer
                 animator.SetBool("isDisconnected", true);
                 squirrel.isDespawned = true;
+                rb.gravityScale = 0;
+                box.enabled = false;
             }
         }
     }

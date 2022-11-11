@@ -234,7 +234,6 @@ public class Squirrel : MonoBehaviour
     }
     void Death()
     {
-        gameObject.tag = "";
         gameObject.layer = 0;
         animator.SetBool("isDead", true);
         animator.Play("die");
