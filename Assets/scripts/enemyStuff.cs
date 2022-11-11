@@ -101,8 +101,11 @@ public class enemyStuff : MonoBehaviour
                 if ((play1pos < selfpos) && (facingRight == true)) { Flip(); }
                 if (inRadius(one) == false)
                 {
-                    // add enemy walking animation here ---------
+                    animator.SetBool("isWalking", true);
                     rb.velocity = new Vector2(whichWay * movespeed, rb.velocity.y);
+                } else
+                {
+                    animator.SetBool("isWalking", false);
                 }
             }
             if (curtarget == 2)
@@ -111,8 +114,11 @@ public class enemyStuff : MonoBehaviour
                 if ((play2pos < selfpos) && (facingRight == true)) { Flip(); }
                 if (inRadius(two) == false)
                 {
-                    // add enemy walking animation here -------------
+                    animator.SetBool("isWalking", true);
                     rb.velocity = new Vector2(whichWay * movespeed, rb.velocity.y);
+                } else
+                {
+                    animator.SetBool("isWalking", false);
                 }
             }
             if (Time.time >= nextAttackTime)
@@ -169,7 +175,7 @@ public class enemyStuff : MonoBehaviour
             two = Mathf.Abs(selfpos - play2pos);
 
             // Only target player 2 if it is spawned in and closer
-            if (one > two && !GameObject.Find("playerTwo").GetComponent<Animator>().GetBool("isDisconnected"))
+            if (one > two && !GameObject.Find("playerTwo").GetComponent<Animator>().GetBool("isDisconnected") && !squirrel2.isDead)
             {
                 //Debug.Log("closest to player 2");
                 curtarget = 2;

@@ -13,29 +13,32 @@ public class PlayerOneMove : MonoBehaviour
     }
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (!squirrel.isDead)
         {
-            SceneManager.LoadScene("Main");
-        }
-        if (Input.GetKeyDown(KeyCode.F))
-        {
-            squirrel.Transform();
-        }
-        if (Input.GetKeyDown(KeyCode.G))
-        {
-            squirrel.Throw();
-        }
-        if (Input.GetKeyDown(KeyCode.W))
-        {
-            squirrel.Jump();
-        }
-        if (Input.GetKeyDown(KeyCode.S))
-        {
-            squirrel.Block();
-        }
-        else if (squirrel.isBlocking && Input.GetKeyUp(KeyCode.S))
-        {
-            squirrel.CancelBlock();
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                SceneManager.LoadScene("Main");
+            }
+            if (Input.GetKeyDown(KeyCode.F))
+            {
+                squirrel.Transform();
+            }
+            if (Input.GetKeyDown(KeyCode.G))
+            {
+                squirrel.Throw();
+            }
+            if (Input.GetKeyDown(KeyCode.W))
+            {
+                squirrel.Jump();
+            }
+            if (Input.GetKeyDown(KeyCode.S))
+            {
+                squirrel.Block();
+            }
+            else if (squirrel.isBlocking && Input.GetKeyUp(KeyCode.S))
+            {
+                squirrel.CancelBlock();
+            }
         }
     }
 }

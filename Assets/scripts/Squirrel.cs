@@ -7,13 +7,13 @@ public class Squirrel : MonoBehaviour
 {
     Rigidbody2D rb;
     public GameObject acorn;
-    public bool isPlayerOne;
+    public bool isPlayerOne, isDead;
     public float jumpForceNormal = 10;
     public float jumpForceBuff = 12;
     public string movementAxis;
     public bool isBlocking, isDespawned;
     float speed = 6;
-    bool isBuff = false;
+    bool isBuff;
     float moveInput, checkRadius;
     bool facingRight = true;
     bool isGrounded;
@@ -75,19 +75,22 @@ public class Squirrel : MonoBehaviour
         moveInput = Input.GetAxisRaw(movementAxis);
         rb.velocity = new Vector2(moveInput * speed, rb.velocity.y);
 
-        //flips player when moving as moveinput will be 1 or -1
-        if (!facingRight && moveInput > 0) { Flip(); }
-        else if (facingRight && moveInput < 0) { Flip(); }
+        if (!isDead)
+        {
+            //flips player when moving as moveinput will be 1 or -1
+            if (!facingRight && moveInput > 0) { Flip(); }
+            else if (facingRight && moveInput < 0) { Flip(); }
 
-        //will play run animation when running left or right
-        // if there is a more efficient way to do this then go ahead - emma :)
-        if (moveInput == 0)
-        {
-            animator.SetBool("isRunning", false);
-        }
-        else
-        {
-            animator.SetBool("isRunning", true);
+            //will play run animation when running left or right
+            // if there is a more efficient way to do this then go ahead - emma :)
+            if (moveInput == 0)
+            {
+                animator.SetBool("isRunning", false);
+            }
+            else
+            {
+                animator.SetBool("isRunning", true);
+            }
         }
     }
 
@@ -221,16 +224,19 @@ public class Squirrel : MonoBehaviour
         
         if (squirrelHealth <= 0)
         {
-            death();
+            Death();
         } else
         {
             // Hit animation
             animator.Play("take_damage");
         }
     }
-    void death()
+    void Death()
     {
-
+        gameObject.tag = "";
+        gameObject.layer = 0;
+        animator.Play("die");
+        isDead = true;
     }
 
 }
