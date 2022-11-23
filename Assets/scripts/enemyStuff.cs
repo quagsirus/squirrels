@@ -14,6 +14,7 @@ public class enemyStuff : MonoBehaviour
     Rigidbody2D rb;
     Animator animator;
     SpriteRenderer sprite;
+    public GameObject barrel;
     public float play1pos;
     public float play2pos;
     public float selfpos;
@@ -127,6 +128,14 @@ public class enemyStuff : MonoBehaviour
                 if (inRadius(one) || inRadius(two))
                 {
                     ePunch();
+                }
+                else
+                {
+                    GameObject barrel1 = Instantiate(barrel, transform.position, Quaternion.identity);
+                    if (facingRight)
+                    {
+                        barrel1.GetComponent<barrelRoll>().move = 5;
+                    }
                 }
                 nextAttackTime = Time.time + attackRate;
             }

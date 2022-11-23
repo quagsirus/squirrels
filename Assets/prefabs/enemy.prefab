@@ -183,6 +183,7 @@ MonoBehaviour:
   squirrel2: {fileID: 0}
   maxHeath: 50
   movespeed: 5
+  barrel: {fileID: 144752957870164647, guid: 05a758e1d377fe54188ce31d14cfbaff, type: 3}
   play1pos: 0
   play2pos: 0
   selfpos: 0

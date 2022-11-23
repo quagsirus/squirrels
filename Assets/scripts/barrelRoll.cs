@@ -7,7 +7,7 @@ public class barrelRoll : MonoBehaviour
     [SerializeField] [HideInInspector] Squirrel squirrel1;
     [SerializeField] [HideInInspector] Squirrel squirrel2;
     Rigidbody2D rb;
-    public int moveSpeed = 30;
+    public int move = -5;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,7 +19,7 @@ public class barrelRoll : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        rb.velocity = new Vector2(moveSpeed, rb.velocity.y);
+        rb.velocity = new Vector2(move, rb.velocity.y);
     }
     public void OnTriggerEnter2D(Collider2D player)
     {
