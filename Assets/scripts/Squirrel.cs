@@ -210,7 +210,6 @@ public class Squirrel : MonoBehaviour
             squirrelHealth -= damage;
             if (isPlayerOne)
             {
-                Debug.Log(ui);
                 ui.SetStat("p1 Lives", squirrelHealth);
             }
             else

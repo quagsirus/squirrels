@@ -15,6 +15,7 @@ public class UiStuff : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
         p1Lives = GameObject.Find("p1 lives");
     }
     public void SetStat(string statistic, int amount)
