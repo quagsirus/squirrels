@@ -227,7 +227,6 @@ public class Squirrel : MonoBehaviour
     {
         gameObject.layer = 0;
         isDying = true;
-        animator.SetBool("isDying", true);
         animator.Play("die");
         yield return new WaitForSeconds(0.1f);
         float animationLength = animator.GetCurrentAnimatorStateInfo(0).length;
