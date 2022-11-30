@@ -182,7 +182,7 @@ GameObject:
   - component: {fileID: 3384928925075660708}
   - component: {fileID: 3384928925075660714}
   - component: {fileID: 3384928925075660715}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: playerTwo
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -352,13 +352,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   acorn: {fileID: 6653980313916308350, guid: 56f8f7357fb0d6748bef023c6f3a2dcb, type: 3}
-  isPlayerOne: 0
-  isDead: 0
   jumpForceNormal: 10
   jumpForceBuff: 12
   movementAxis: Horizontaltwo
   isBlocking: 0
   isDespawned: 0
+  isDead: 0
+  isPlayerOne: 0
+  isDying: 0
   punchDamage: 30
   attackRate: 2
   buffHitbox: {x: 0.58, y: 1.26}
