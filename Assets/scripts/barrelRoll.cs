@@ -27,12 +27,12 @@ public class barrelRoll : MonoBehaviour
         {
             if (player.name == "playerOne")
             {
-                squirrel1.takenDamage(1);
+                squirrel1.takenDamage(1, gameObject);
                 Destroy(gameObject);
             }
             if (player.name == "playerTwo" && !squirrel2.isDespawned)
             {
-                squirrel2.takenDamage(1);
+                squirrel2.takenDamage(1, gameObject);
                 Destroy(gameObject);
             }
             

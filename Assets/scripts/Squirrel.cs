@@ -73,7 +73,7 @@ public class Squirrel : MonoBehaviour
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, checkRadius, whatIsGround);
         moveInput = Input.GetAxisRaw(movementAxis);
 
-        if (!isDying)
+        if (!isDying && !isBlocking)
         {
             rb.velocity = new Vector2(moveInput * speed, rb.velocity.y);
             //flips player when moving as moveinput will be 1 or -1
@@ -202,25 +202,31 @@ public class Squirrel : MonoBehaviour
             newAcorn.GetComponent<acornMov>().speed = 20;
         }
     }
-    public void takenDamage(int damage)
+    public void takenDamage(int damage, GameObject attacker)
     {
-        squirrelHealth -= damage;
-        if (isPlayerOne)
+        if (!(transform.position.x - attacker.transform.position.x >= 0 && !facingRight && isBlocking)
+            && !(transform.position.x - attacker.transform.position.x < 0 && facingRight && isBlocking))
         {
-            Debug.Log(ui);
-            ui.SetStat("p1 Lives", squirrelHealth);
-        } else
-        {
-            ui.SetStat("p2 Lives", squirrelHealth);
-        }
-        
-        if (squirrelHealth <= 0)
-        {
-            StartCoroutine(Death());
-        } else
-        {
-            // Hit animation
-            animator.Play("take_damage");
+            squirrelHealth -= damage;
+            if (isPlayerOne)
+            {
+                Debug.Log(ui);
+                ui.SetStat("p1 Lives", squirrelHealth);
+            }
+            else
+            {
+                ui.SetStat("p2 Lives", squirrelHealth);
+            }
+
+            if (squirrelHealth <= 0)
+            {
+                StartCoroutine(Death());
+            }
+            else
+            {
+                // Hit animation
+                animator.Play("take_damage");
+            }
         }
     }
     IEnumerator Death()

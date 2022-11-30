@@ -39,7 +39,6 @@ public class enemyStuff : MonoBehaviour
     // Start is called before the firllst frame update
     void Start()
     {
-        
         sprite = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
         squirrel1 = GameObject.Find("playerOne").GetComponent<Squirrel>();
@@ -151,14 +150,14 @@ public class enemyStuff : MonoBehaviour
             {
                 if (!squirrel1.isBlocking)
                 {
-                    squirrel1.takenDamage(1);
+                    squirrel1.takenDamage(1, gameObject);
                 }
             }
             if (player.name == "playerTwo" && !squirrel2.isDespawned)
             {
                 if (!squirrel2.isBlocking)
                 {
-                    squirrel2.takenDamage(1);
+                    squirrel2.takenDamage(1, gameObject);
                 }
             }
         }
