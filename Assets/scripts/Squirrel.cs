@@ -232,6 +232,8 @@ public class Squirrel : MonoBehaviour
         float animationLength = animator.GetCurrentAnimatorStateInfo(0).length;
         yield return new WaitForSeconds(animationLength);
         isDead = true;
+        rb.gravityScale = 0.0f;
+        boxCollider.enabled = false;
     }
 
 }

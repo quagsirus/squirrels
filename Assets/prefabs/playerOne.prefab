@@ -278,7 +278,7 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 1
+  m_CollisionDetection: 0
   m_Constraints: 4
 --- !u!114 &251303369787820582
 MonoBehaviour:
@@ -352,13 +352,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   acorn: {fileID: 6653980313916308350, guid: 56f8f7357fb0d6748bef023c6f3a2dcb, type: 3}
-  isPlayerOne: 1
-  isDead: 0
   jumpForceNormal: 10
   jumpForceBuff: 12
   movementAxis: Horizontal
   isBlocking: 0
   isDespawned: 0
+  isDead: 0
+  isPlayerOne: 1
+  isDying: 0
   punchDamage: 30
   attackRate: 2
   buffHitbox: {x: 0.58, y: 1.26}
