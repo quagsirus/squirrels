@@ -13,6 +13,7 @@ public class gameOver : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Time.timeScale = 1f;
         squirrel1 = GameObject.Find("playerOne").GetComponent<Squirrel>();
         squirrel2 = GameObject.Find("playerTwo").GetComponent<Squirrel>();
     }
@@ -27,10 +28,6 @@ public class gameOver : MonoBehaviour
         else if (squirrel1.isDead && squirrel2.isDespawned)
         {
             GameOver();
-        }
-        else
-        {
-            Time.timeScale = 1f;
         }
     }
 
