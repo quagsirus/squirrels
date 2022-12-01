@@ -6,7 +6,6 @@ using UnityEngine.UI;
 
 public class UiStuff : MonoBehaviour
 {
-    public Image spriteRenderer;
     public Sprite deadHeart;
     public Sprite aliveHeart;
 
