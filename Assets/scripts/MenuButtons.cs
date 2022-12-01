@@ -10,7 +10,8 @@ public class MenuButtons : MonoBehaviour
     public Button m_StartGame, m_OpenSettings, m_ReturnFromSettings, m_HowToPlay, m_ReturnFromHTP, m_Quit;
     public Vector3 m_MainCameraPos, m_SettingsCameraPos;
     public GameObject m_settings, m_htpCanvas;
-    private Vector3[] positions;
+    public Slider fxVolume, musicVolume;
+    AudioSource bgm;
 
     // Start is called before the first frame update
     void Start()
@@ -22,7 +23,25 @@ public class MenuButtons : MonoBehaviour
         m_Quit.onClick.AddListener(Quit);
         m_HowToPlay.onClick.AddListener(HowToPlay);
         m_ReturnFromHTP.onClick.AddListener(Return);
-        positions = new[] { m_MainCameraPos, m_SettingsCameraPos };
+
+        fxVolume.value = PlayerPrefs.GetFloat("fxVolume", 0.6f);
+        musicVolume.value = PlayerPrefs.GetFloat("musicVolume", 0.4f);
+        fxVolume.onValueChanged.AddListener(FxVolumeChanged);
+        musicVolume.onValueChanged.AddListener(MusicVolumeChanged);
+
+        bgm = GameObject.Find("BGM").GetComponent<AudioSource>();
+        bgm.volume = PlayerPrefs.GetFloat("musicVolume") / 2;
+    }
+
+    void FxVolumeChanged(float value)
+    {
+        PlayerPrefs.SetFloat("fxVolume", value);
+    }
+
+    void MusicVolumeChanged(float value)
+    {
+        PlayerPrefs.SetFloat("musicVolume", value);
+        bgm.volume = value / 2;
     }
 
     void Update()
