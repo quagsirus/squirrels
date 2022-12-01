@@ -25,12 +25,12 @@ public class MenuButtons : MonoBehaviour
         m_ReturnFromHTP.onClick.AddListener(Return);
 
         fxVolume.value = PlayerPrefs.GetFloat("fxVolume", 0.6f);
-        musicVolume.value = PlayerPrefs.GetFloat("musicVolume", 0.4f);
+        musicVolume.value = PlayerPrefs.GetFloat("musicVolume", 0.05f) * 3;
         fxVolume.onValueChanged.AddListener(FxVolumeChanged);
         musicVolume.onValueChanged.AddListener(MusicVolumeChanged);
 
         bgm = GameObject.Find("BGM").GetComponent<AudioSource>();
-        bgm.volume = PlayerPrefs.GetFloat("musicVolume") / 2;
+        bgm.volume = PlayerPrefs.GetFloat("musicVolume", 0.05f);
     }
 
     void FxVolumeChanged(float value)
@@ -40,8 +40,8 @@ public class MenuButtons : MonoBehaviour
 
     void MusicVolumeChanged(float value)
     {
-        PlayerPrefs.SetFloat("musicVolume", value);
-        bgm.volume = value / 2;
+        PlayerPrefs.SetFloat("musicVolume", value / 3);
+        bgm.volume = value / 3;
     }
 
     void Update()
