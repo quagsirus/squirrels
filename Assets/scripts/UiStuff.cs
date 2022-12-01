@@ -10,12 +10,14 @@ public class UiStuff : MonoBehaviour
     public Sprite aliveHeart;
 
     GameObject p1Lives, p2Lives, section;
+    FxPlayer fxPlayer;
 
     // Start is called before the first frame update
     void Start()
     {
         p2Lives = GameObject.Find("p2 lives");
         p1Lives = GameObject.Find("p1 lives");
+        fxPlayer = GameObject.Find("SFX").GetComponent<FxPlayer>();
     }
     public void SetStat(string statistic, int amount)
     {
@@ -40,6 +42,7 @@ public class UiStuff : MonoBehaviour
                 goto case 2;
             case 2:
                 section.transform.Find("heart3").GetComponent<Image>().sprite = deadHeart;
+                fxPlayer.PlayHit();
                 break;
         }
     }
