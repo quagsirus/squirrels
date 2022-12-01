@@ -34,7 +34,7 @@ public class enemyStuff : MonoBehaviour
     public LayerMask playerlayer;
     public int attackDamage = 1;
     public float attackRate = 3f;
-    public float throwRate = 2f;
+    float throwRate = 8f;
     float nextAttackTime = 0;
     float nextThrowTime = 0;
 
@@ -135,7 +135,7 @@ public class enemyStuff : MonoBehaviour
             if (Time.time >= nextThrowTime)
             {
                 barThrow();
-                Debug.Log("he");
+                
                 nextThrowTime = Time.time + throwRate;
             }
         }
@@ -150,10 +150,8 @@ public class enemyStuff : MonoBehaviour
                 barrel1.GetComponent<barrelRoll>().move = 5;
             }
         }
-        else
-        {
-            //barThrow();
-        }
+        
+
     }
     void ePunch()
     {
