@@ -32,19 +32,14 @@ public class UiStuff : MonoBehaviour
         }
         switch(amount)
         {
-            case 3:
-                break;
-            case 2:
-                section.transform.Find("heart3").GetComponent<Image>().sprite = deadHeart;
-                break;
+            case <=0:
+                section.transform.Find("heart1").GetComponent<Image>().sprite = deadHeart;
+                goto case 1;
             case 1:
                 section.transform.Find("heart2").GetComponent<Image>().sprite = deadHeart;
+                goto case 2;
+            case 2:
                 section.transform.Find("heart3").GetComponent<Image>().sprite = deadHeart;
-                break;
-            case 0:
-                section.transform.Find("heart3").GetComponent<Image>().sprite = deadHeart;
-                section.transform.Find("heart2").GetComponent<Image>().sprite = deadHeart;
-                section.transform.Find("heart1").GetComponent<Image>().sprite = deadHeart;
                 break;
         }
     }

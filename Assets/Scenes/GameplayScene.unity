@@ -996,7 +996,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8b706e85a3543343b0d7c3f3df35c6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spriteRenderer: {fileID: 0}
   deadHeart: {fileID: 0}
   aliveHeart: {fileID: 0}
 --- !u!1 &262925187
@@ -2455,6 +2454,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a32cc220e91748948923ca8fb43aa265, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  standardBGM: {fileID: 0}
+  bossBGM: {fileID: 0}
 --- !u!1 &636168685
 GameObject:
   m_ObjectHideFlags: 0
@@ -4692,8 +4693,8 @@ RectTransform:
   m_GameObject: {fileID: 1501635268}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.00008, y: 1.00008, z: 1.00008}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1444853631}
   - {fileID: 516660993}
