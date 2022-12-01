@@ -6,9 +6,12 @@ public class enemyspawn : MonoBehaviour
 {
     public GameObject enemy;
     public GameObject self;
+    private int tTime = 10;
+    private int tally = 0;
     // Start is called before the first frame update
     void Start()
     {
+        tTime = 10;
         StartCoroutine(spawn());
         
     }
@@ -27,7 +30,13 @@ public class enemyspawn : MonoBehaviour
     {
         
         GameObject newEnemy = Instantiate(enemy, self.transform);
-        yield return new WaitForSeconds(10);
+        yield return new WaitForSeconds(tTime);
+        tally++;
+        if (tally > 2)
+        {
+            tTime--;
+            tally = 0;
+        }
         StartCoroutine(spawn());
 
     }

@@ -33,7 +33,7 @@ public class enemyStuff : MonoBehaviour
     public float attackRange = 0.6f;
     public LayerMask playerlayer;
     public int attackDamage = 1;
-    public float attackRate = 3f;
+    public float attackRate = 2f;
     float throwRate = 8f;
     float nextAttackTime = 0;
     float nextThrowTime = 0;
