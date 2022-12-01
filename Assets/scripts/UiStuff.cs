@@ -36,7 +36,10 @@ public class UiStuff : MonoBehaviour
         {
             case <=0:
                 section.transform.Find("heart1").GetComponent<Image>().sprite = deadHeart;
-                goto case 1;
+                section.transform.Find("heart2").GetComponent<Image>().sprite = deadHeart;
+                section.transform.Find("heart3").GetComponent<Image>().sprite = deadHeart;
+                fxPlayer.PlayDie();
+                break;
             case 1:
                 section.transform.Find("heart2").GetComponent<Image>().sprite = deadHeart;
                 goto case 2;

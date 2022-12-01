@@ -5,7 +5,7 @@ using UnityEngine;
 public class FxPlayer : MonoBehaviour
 {
     AudioSource audioSource;
-    public AudioClip hit;
+    public AudioClip hit, die;
 
     private void Start()
     {
@@ -15,6 +15,11 @@ public class FxPlayer : MonoBehaviour
     public void PlayHit()
     {
         audioSource.clip = hit;
+        audioSource.Play();
+    }
+    public void PlayDie()
+    {
+        audioSource.clip = die;
         audioSource.Play();
     }
 }
