@@ -1,11 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class FxPlayer : MonoBehaviour
 {
     AudioSource audioSource;
-    public AudioClip hit, die;
+    public AudioClip hit, die, enemyDie;
 
     private void Start()
     {
@@ -20,6 +18,11 @@ public class FxPlayer : MonoBehaviour
     public void PlayDie()
     {
         audioSource.clip = die;
+        audioSource.Play();
+    }
+    public void PlayEnemyDie()
+    {
+        audioSource.clip = enemyDie;
         audioSource.Play();
     }
 }

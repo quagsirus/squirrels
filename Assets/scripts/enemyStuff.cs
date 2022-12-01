@@ -37,6 +37,7 @@ public class enemyStuff : MonoBehaviour
     float throwRate = 8f;
     float nextAttackTime = 0;
     float nextThrowTime = 0;
+    FxPlayer fxPlayer;
 
     // Start is called before the firllst frame update
     void Start()
@@ -47,7 +48,8 @@ public class enemyStuff : MonoBehaviour
         squirrel2 = GameObject.Find("playerTwo").GetComponent<Squirrel>();
         currentHeath = maxHeath;
         animator = GetComponent<Animator>();
-        switch(Random.Range(0,2))
+        fxPlayer = GameObject.Find("SFX").GetComponent<FxPlayer>();
+        switch (Random.Range(0,2))
         {
             case 0:
                 //Debug.Log("lol");
@@ -82,8 +84,9 @@ public class enemyStuff : MonoBehaviour
     }
     IEnumerator Die()
     {
-        dead = true; 
+        dead = true;
         //Debug.Log("dead");
+        fxPlayer.PlayEnemyDie();
         animator.Play("die");
         yield return new WaitForSeconds(0.1f);
         float animationLength = animator.GetCurrentAnimatorStateInfo(0).length;
