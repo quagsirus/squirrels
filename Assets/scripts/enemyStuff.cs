@@ -33,8 +33,10 @@ public class enemyStuff : MonoBehaviour
     public float attackRange = 0.6f;
     public LayerMask playerlayer;
     public int attackDamage = 1;
-    public float attackRate = 10f;
+    public float attackRate = 3f;
+    public float throwRate = 2f;
     float nextAttackTime = 0;
+    float nextThrowTime = 0;
 
     // Start is called before the firllst frame update
     void Start()
@@ -128,16 +130,29 @@ public class enemyStuff : MonoBehaviour
                 {
                     ePunch();
                 }
-                else
-                {
-                    GameObject barrel1 = Instantiate(barrel, transform.position, Quaternion.identity);
-                    if (facingRight)
-                    {
-                        barrel1.GetComponent<barrelRoll>().move = 5;
-                    }
-                }
                 nextAttackTime = Time.time + attackRate;
             }
+            if (Time.time >= nextThrowTime)
+            {
+                barThrow();
+                Debug.Log("he");
+                nextThrowTime = Time.time + throwRate;
+            }
+        }
+    }
+    void barThrow()
+    {
+        if (canthrow(one) == false)
+        {
+            GameObject barrel1 = Instantiate(barrel, transform.position, Quaternion.identity);
+            if (facingRight)
+            {
+                barrel1.GetComponent<barrelRoll>().move = 5;
+            }
+        }
+        else
+        {
+            //barThrow();
         }
     }
     void ePunch()
@@ -206,6 +221,11 @@ public class enemyStuff : MonoBehaviour
     private bool inRadius(float x)
     {
         if (-2 < x && x < 2) { return true; }
+        else { return false; }
+    }
+    private bool canthrow(float x)
+    {
+        if (-8 < x && x < 8) { return true; }
         else { return false; }
     }
 }
