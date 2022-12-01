@@ -10,6 +10,10 @@ public class FxPlayer : MonoBehaviour
         audioSource = gameObject.GetComponent<AudioSource>();
         audioSource.volume = PlayerPrefs.GetFloat("fxVolume", 0.6f);
     }
+    public void UpdateVolume()
+    {
+        audioSource.volume = PlayerPrefs.GetFloat("fxVolume", 0.6f);
+    }
     public void PlayHit()
     {
         audioSource.clip = hit;
