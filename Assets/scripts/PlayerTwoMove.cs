@@ -10,6 +10,7 @@ public class PlayerTwoMove : MonoBehaviour
     BoxCollider2D box;
     bool buttonPressed;
     float lastInteractionTime;
+    Transform lives;
 
     private void Start()
     {
@@ -19,6 +20,7 @@ public class PlayerTwoMove : MonoBehaviour
         box = gameObject.GetComponent<BoxCollider2D>();
         animator.SetBool("isDisconnected", true);
         squirrel.isDespawned = true;
+        lives = GameObject.Find("p2 lives").GetComponent<Transform>();
     }
     private void Update()
     {
@@ -63,6 +65,7 @@ public class PlayerTwoMove : MonoBehaviour
                     squirrel.isDespawned = false;
                     rb.gravityScale = 1;
                     box.enabled = true;
+                    lives.localScale = new Vector3(1,1,1);
                 }
                 lastInteractionTime = Time.time;
             }
@@ -73,6 +76,7 @@ public class PlayerTwoMove : MonoBehaviour
                 squirrel.isDespawned = true;
                 rb.gravityScale = 0;
                 box.enabled = false;
+                lives.localScale = new Vector3(0,0,0);
             }
         }
     }
