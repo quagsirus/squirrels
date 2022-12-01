@@ -26,7 +26,7 @@ public class enemyspawn : MonoBehaviour
     IEnumerator spawn()
     {
         
-        yield return new WaitForSeconds(4);
+        yield return new WaitForSeconds(10);
         GameObject newEnemy = Instantiate(enemy, self.transform);
         StartCoroutine(spawn());
 

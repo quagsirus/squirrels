@@ -33,7 +33,7 @@ public class enemyStuff : MonoBehaviour
     public float attackRange = 0.6f;
     public LayerMask playerlayer;
     public int attackDamage = 1;
-    float attackRate = 3f;
+    public float attackRate = 10f;
     float nextAttackTime = 0;
 
     // Start is called before the firllst frame update

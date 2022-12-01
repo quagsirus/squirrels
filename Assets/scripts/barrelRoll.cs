@@ -23,6 +23,7 @@ public class barrelRoll : MonoBehaviour
     }
     public void OnTriggerEnter2D(Collider2D player)
     {
+        
         if (player.gameObject.tag == "Player")
         {
             if (player.name == "playerOne")
@@ -37,6 +38,11 @@ public class barrelRoll : MonoBehaviour
             }
             
         }
+        if (player.gameObject.tag == "wall") 
+        {
+            Destroy(gameObject);
+        }
         
     }
+    
 }
