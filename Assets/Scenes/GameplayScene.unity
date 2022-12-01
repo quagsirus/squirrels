@@ -4985,6 +4985,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hit: {fileID: 8300000, guid: 6e3812c4ac1020844a5216bf5f80fdfe, type: 3}
   die: {fileID: 8300000, guid: 6304ad68748469049a91b08fac94b843, type: 3}
+  enemyDie: {fileID: 8300000, guid: eb3addd2363c14744a2444df08a78607, type: 3}
 --- !u!82 &1707999138
 AudioSource:
   m_ObjectHideFlags: 0
