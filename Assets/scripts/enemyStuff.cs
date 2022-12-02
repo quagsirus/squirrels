@@ -11,6 +11,7 @@ public class enemyStuff : MonoBehaviour
     int currentHeath = 50;
     private bool facingRight = false;
     public float movespeed = 5f;
+    public int pointsWorth = 5;
     Rigidbody2D rb;
     Animator animator;
     SpriteRenderer sprite;
@@ -87,6 +88,7 @@ public class enemyStuff : MonoBehaviour
         dead = true;
         //Debug.Log("dead");
         fxPlayer.PlayEnemyDie();
+        squirrel1.ReportDeath(pointsWorth);
         animator.Play("die");
         yield return new WaitForSeconds(0.1f);
         float animationLength = animator.GetCurrentAnimatorStateInfo(0).length;

@@ -241,4 +241,8 @@ public class Squirrel : MonoBehaviour
         boxCollider.enabled = false;
     }
 
+    public void ReportDeath(int points)
+    {
+        ui.AddToScore(points);
+    }
 }

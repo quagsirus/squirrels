@@ -10,14 +10,19 @@ public class UiStuff : MonoBehaviour
     public Sprite aliveHeart;
 
     GameObject p1Lives, p2Lives, section;
+    TextMeshProUGUI scoreDisplay;
     FxPlayer fxPlayer;
+    int score;
 
     // Start is called before the first frame update
     void Start()
     {
         p2Lives = GameObject.Find("p2 lives");
         p1Lives = GameObject.Find("p1 lives");
+        scoreDisplay = GameObject.Find("score").GetComponent<TextMeshProUGUI>();
         fxPlayer = GameObject.Find("SFX").GetComponent<FxPlayer>();
+
+        scoreDisplay.text = score.ToString();
     }
     public void SetStat(string statistic, int amount)
     {
@@ -48,5 +53,10 @@ public class UiStuff : MonoBehaviour
                 fxPlayer.PlayHit();
                 break;
         }
+    }
+    public void AddToScore(int points)
+    {
+        score += points;
+        scoreDisplay.text = score.ToString();
     }
 }
