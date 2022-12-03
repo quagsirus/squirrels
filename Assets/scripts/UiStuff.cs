@@ -22,7 +22,7 @@ public class UiStuff : MonoBehaviour
         scoreDisplay = GameObject.Find("score").GetComponent<TextMeshProUGUI>();
         fxPlayer = GameObject.Find("SFX").GetComponent<FxPlayer>();
 
-        scoreDisplay.text = score.ToString();
+        AddToScore(score, false);
     }
     public void SetStat(string statistic, int amount)
     {
@@ -54,9 +54,23 @@ public class UiStuff : MonoBehaviour
                 break;
         }
     }
-    public void AddToScore(int points)
+    public void AddToScore(int points, bool isAdding = true)
     {
-        score += points;
-        scoreDisplay.text = score.ToString();
+        if (isAdding)
+        {
+            score += points;
+        } else
+        {
+            score = points;
+        }
+
+        string scoreText = new("");
+        string scoreOrig = score.ToString();
+
+        for (int index = 0; index < scoreOrig.Length; index++)
+        {
+            scoreText += "<sprite index=" + scoreOrig[index] + "> ";
+        }
+        scoreDisplay.text = scoreText;
     }
 }
