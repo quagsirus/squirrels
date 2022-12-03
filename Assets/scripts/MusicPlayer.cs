@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MusicManager : MonoBehaviour
+public class MusicPlayer : MonoBehaviour
 {
-    public AudioClip standardBGM, bossBGM;
+    // public AudioClip standardBGM, bossBGM;
     Squirrel squirrel1, squirrel2;
 
     // Start is called before the first frame update
