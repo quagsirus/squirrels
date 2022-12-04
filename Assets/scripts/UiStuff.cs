@@ -12,7 +12,7 @@ public class UiStuff : MonoBehaviour
     GameObject p1Lives, p2Lives, section;
     TextMeshProUGUI scoreDisplay;
     FxPlayer fxPlayer;
-    int score;
+    public int score;
 
     // Start is called before the first frame update
     void Start()
