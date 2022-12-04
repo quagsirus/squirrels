@@ -1,7 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class gameOver : MonoBehaviour
 {
@@ -9,6 +9,7 @@ public class gameOver : MonoBehaviour
     [SerializeField] [HideInInspector] Squirrel squirrel2;
 
     public GameObject gameoverUI;
+    TMP_InputField textbox;
 
     // Start is called before the first frame update
     void Start()
@@ -16,6 +17,8 @@ public class gameOver : MonoBehaviour
         Time.timeScale = 1f;
         squirrel1 = GameObject.Find("playerOne").GetComponent<Squirrel>();
         squirrel2 = GameObject.Find("playerTwo").GetComponent<Squirrel>();
+        GameObject.Find("SaveScore").GetComponent<Button>().onClick.AddListener(SubmitToLeaderboard);
+        textbox = GameObject.Find("LeaderboardName").GetComponent<TMP_InputField>();
     }
 
     // Update is called once per frame
@@ -41,5 +44,10 @@ public class gameOver : MonoBehaviour
     {
         Time.timeScale = 1f;
         SceneManager.LoadScene("Main");
+    }
+
+    void SubmitToLeaderboard()
+    {
+        Debug.Log(textbox.text);
     }
 }
