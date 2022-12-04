@@ -4146,6 +4146,11 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &907563005 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 3562639442118828450, guid: 53e2ddefc418d2343996c28f4b4eed3e, type: 3}
+  m_PrefabInstance: {fileID: 251303369493428122}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &919143430
 GameObject:
   m_ObjectHideFlags: 0
@@ -4250,6 +4255,11 @@ MonoBehaviour:
   offset: {x: 0, y: 2.42, z: -10}
   minPoint: {x: -18.3, y: 0, z: -10}
   maxPoint: {x: 2, y: 0, z: -10}
+--- !u!95 &926895529 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 8250003684896733516, guid: 235f8d45b8362bb4699a0030e1f433c9, type: 3}
+  m_PrefabInstance: {fileID: 3384928925396633938}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &945814989
 GameObject:
   m_ObjectHideFlags: 0
@@ -8845,6 +8855,14 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 251303369787820634, guid: 53e2ddefc418d2343996c28f4b4eed3e, type: 3}
+      propertyPath: punchEffect
+      value: 
+      objectReference: {fileID: 907563005}
+    - target: {fileID: 8452660365753976099, guid: 53e2ddefc418d2343996c28f4b4eed3e, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 53e2ddefc418d2343996c28f4b4eed3e, type: 3}
 --- !u!1001 &2345250191902897756
@@ -8931,6 +8949,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 935226596270705118, guid: 235f8d45b8362bb4699a0030e1f433c9, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3384928925075660706, guid: 235f8d45b8362bb4699a0030e1f433c9, type: 3}
       propertyPath: m_Name
       value: playerTwo
@@ -8983,5 +9005,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3384928925075660715, guid: 235f8d45b8362bb4699a0030e1f433c9, type: 3}
+      propertyPath: punchEffect
+      value: 
+      objectReference: {fileID: 926895529}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 235f8d45b8362bb4699a0030e1f433c9, type: 3}

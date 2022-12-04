@@ -10,6 +10,7 @@ public class Squirrel : MonoBehaviour
     public float jumpForceNormal = 10;
     public float jumpForceBuff = 12;
     public string movementAxis;
+    public Animator punchEffect;
     public bool isBlocking, isDespawned, isDead, isPlayerOne, isDying;
     float speed = 6;
     bool isBuff;
@@ -187,6 +188,7 @@ public class Squirrel : MonoBehaviour
                 {
                     //Debug.Log("we hit " + enemy.name);
                     enemy.GetComponent<enemyStuff>().takenDamage(punchDamage);
+                    punchEffect.Play("punch");
                 }
             }
         }
