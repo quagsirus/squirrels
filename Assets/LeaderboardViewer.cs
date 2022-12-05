@@ -31,7 +31,7 @@ public class LeaderboardViewer : MonoBehaviour
     {
         WWWForm form = new WWWForm();
 
-        using (UnityWebRequest www = UnityWebRequest.Get("http://140.238.87.144:5000/get"))
+        using (UnityWebRequest www = UnityWebRequest.Get("https://squirrels.catpowered.net/get"))
         {
             www.timeout = 5;
             yield return www.SendWebRequest();

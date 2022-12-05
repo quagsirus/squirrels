@@ -64,7 +64,7 @@ public class gameOver : MonoBehaviour
         GameObject.Find("SaveScore").GetComponent<Button>().interactable = false;
         textbox.readOnly = true;
 
-        using (UnityWebRequest www = UnityWebRequest.Post("http://140.238.87.144:5000/add", form))
+        using (UnityWebRequest www = UnityWebRequest.Post("https://squirrels.catpowered.net/add", form))
         {
             www.timeout = 5;
             yield return www.SendWebRequest();
