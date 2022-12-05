@@ -6,6 +6,7 @@ TagManager:
   tags:
   - background
   - wall
+  - badguy
   layers:
   - Default
   - TransparentFX

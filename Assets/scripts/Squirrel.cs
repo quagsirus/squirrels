@@ -206,8 +206,8 @@ public class Squirrel : MonoBehaviour
     }
     public void takenDamage(int damage, GameObject attacker)
     {
-        if (!(transform.position.x - attacker.transform.position.x >= 0 && !facingRight && isBlocking)
-            && !(transform.position.x - attacker.transform.position.x < 0 && facingRight && isBlocking))
+        if (!(transform.position.x - attacker.transform.position.x >= 0 && !facingRight && isBlocking && attacker.tag == "badguy")
+            && !(transform.position.x - attacker.transform.position.x < 0 && facingRight && isBlocking && attacker.tag == "badguy"))
         {
             squirrelHealth -= damage;
             if (isPlayerOne)

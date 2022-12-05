@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 460378747957606780}
   m_Layer: 7
   m_Name: attackPoint (1)
-  m_TagString: Untagged
+  m_TagString: badguy
   m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -47,7 +47,7 @@ GameObject:
   - component: {fileID: 460378748644442759}
   m_Layer: 6
   m_Name: enemy
-  m_TagString: Untagged
+  m_TagString: badguy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -183,6 +183,7 @@ MonoBehaviour:
   squirrel2: {fileID: 0}
   maxHeath: 50
   movespeed: 5
+  pointsWorth: 5
   barrel: {fileID: 144752957870164647, guid: 555d7a0ea241e904cb4744f027f8a709, type: 3}
   play1pos: 0
   play2pos: 0
@@ -194,6 +195,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   attackDamage: 1
+  attackRate: 2
 --- !u!95 &460378748644442759
 Animator:
   serializedVersion: 4

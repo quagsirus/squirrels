@@ -32,7 +32,7 @@ public class enemyspawn : MonoBehaviour
         GameObject newEnemy = Instantiate(enemy, self.transform);
         yield return new WaitForSeconds(tTime);
         tally++;
-        if (tally > 2)
+        if ((tally > 2) && (tTime > 1))
         {
             tTime--;
             tally = 0;
